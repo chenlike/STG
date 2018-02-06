@@ -1,0 +1,643 @@
+fileFormatVersion: 2
+guid: bb7775a32b6b3784c8fdd9183c1fae4e
+timeCreated: 1517925299
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: enm3_0
+    21300002: enm3_1
+    21300004: enm3_2
+    21300006: enm3_3
+    21300008: enm3_4
+    21300010: enm3_8
+    21300012: enm3_10
+    21300014: enm3_5
+    21300016: enm3_6
+    21300018: enm3_7
+    21300020: enm3_9
+    21300022: enm3_11
+    21300024: enm3_12
+    21300026: enm3_13
+    21300028: enm3_14
+    21300030: enm3_15
+    21300032: enm3_16
+    21300034: enm3_17
+    21300036: enm3_18
+    21300038: enm3_19
+    21300040: enm3_20
+    21300042: enm3_21
+    21300044: enm3_22
+    21300046: enm3_23
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enm3_18
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 133
+        width: 40
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 41}
+        - {x: -20, y: 39}
+        - {x: -20, y: -34}
+        - {x: -13, y: -41}
+        - {x: -3, y: -41}
+        - {x: 1, y: -40}
+        - {x: 3, y: -36}
+        - {x: 3, y: -33}
+        - {x: 3, y: -36}
+        - {x: 2, y: -41}
+        - {x: 17, y: -41}
+        - {x: 20, y: -34}
+        - {x: 20, y: 27}
+        - {x: 18, y: 41}
+      physicsShape:
+      - - {x: -15, y: 41}
+        - {x: -20, y: 37}
+        - {x: -20, y: -28}
+        - {x: -18, y: -41}
+        - {x: 20, y: -41}
+        - {x: 20, y: 41}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_19
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 133
+        width: 40
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 41}
+        - {x: -20, y: 32}
+        - {x: -20, y: -36}
+        - {x: -13, y: -41}
+        - {x: -4, y: -41}
+        - {x: 1, y: -40}
+        - {x: 3, y: -36}
+        - {x: 3, y: -33}
+        - {x: 3, y: -36}
+        - {x: 2, y: -41}
+        - {x: 16, y: -41}
+        - {x: 20, y: -24}
+        - {x: 20, y: 41}
+      physicsShape:
+      - - {x: -17, y: 41}
+        - {x: -20, y: 26}
+        - {x: -20, y: -32}
+        - {x: -16, y: -41}
+        - {x: 16, y: -41}
+        - {x: 20, y: -23}
+        - {x: 20, y: 21}
+        - {x: 14, y: 41}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_20
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 133
+        width: 40
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 41}
+        - {x: -20, y: 24}
+        - {x: -20, y: -38}
+        - {x: -19, y: -41}
+        - {x: 0, y: -41}
+        - {x: 1, y: -40}
+        - {x: 3, y: -36}
+        - {x: 3, y: -33}
+        - {x: 3, y: -36}
+        - {x: 2, y: -41}
+        - {x: 16, y: -41}
+        - {x: 20, y: -24}
+        - {x: 20, y: 41}
+      - - {x: -20, y: 15}
+        - {x: -19, y: 14}
+        - {x: -16, y: 15}
+        - {x: -16, y: 18}
+        - {x: -19, y: 19}
+        - {x: -20, y: 18}
+      physicsShape:
+      - - {x: -6, y: 41}
+        - {x: -20, y: 20}
+        - {x: -20, y: -36}
+        - {x: -19, y: -41}
+        - {x: 16, y: -41}
+        - {x: 20, y: -27}
+        - {x: 20, y: 24}
+        - {x: 14, y: 41}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_21
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 133
+        width: 40
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 41}
+        - {x: -15, y: 30}
+        - {x: -20, y: 22}
+        - {x: -20, y: -41}
+        - {x: 0, y: -41}
+        - {x: 1, y: -40}
+        - {x: 3, y: -36}
+        - {x: 3, y: -33}
+        - {x: 3, y: -36}
+        - {x: 2, y: -41}
+        - {x: 15, y: -41}
+        - {x: 20, y: -33}
+        - {x: 20, y: 41}
+      physicsShape:
+      - - {x: 13, y: 41}
+        - {x: -5, y: 41}
+        - {x: -13, y: 38}
+        - {x: -20, y: 5}
+        - {x: -20, y: -26}
+        - {x: -15, y: -41}
+        - {x: 16, y: -41}
+        - {x: 20, y: -30}
+        - {x: 20, y: 18}
+        - {x: 16, y: 34}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_22
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 133
+        width: 44
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19, y: 41}
+        - {x: -22, y: 41}
+        - {x: -22, y: -28}
+        - {x: -12, y: -41}
+        - {x: -5, y: -41}
+        - {x: 0, y: -39}
+        - {x: 3, y: -36}
+        - {x: 3, y: -33}
+        - {x: 3, y: -36}
+        - {x: 2, y: -41}
+        - {x: 16, y: -41}
+        - {x: 22, y: -25}
+        - {x: 22, y: 36}
+        - {x: 21, y: 40}
+      - - {x: -18, y: 13}
+        - {x: -19, y: 10}
+        - {x: -15, y: 5}
+        - {x: -15, y: 6}
+      - - {x: -13, y: 25}
+        - {x: -11, y: 27}
+        - {x: -12, y: 27}
+        - {x: -12, y: 25}
+        - {x: -11, y: 24}
+        - {x: -11, y: 25}
+        - {x: -14, y: 22}
+        - {x: -15, y: 22}
+        - {x: -19, y: 19}
+        - {x: -17, y: 18}
+      - - {x: 12, y: 21}
+        - {x: 9, y: 23}
+        - {x: 10, y: 24}
+        - {x: 11, y: 24}
+        - {x: 16, y: 22}
+        - {x: 14, y: 25}
+        - {x: 12, y: 25}
+        - {x: 9, y: 22}
+        - {x: 12, y: 16}
+        - {x: 13, y: 18}
+      physicsShape:
+      - - {x: -18, y: 41}
+        - {x: -21, y: 23}
+        - {x: -21, y: -36}
+        - {x: -16, y: -41}
+        - {x: 16, y: -41}
+        - {x: 22, y: -25}
+        - {x: 22, y: 23}
+        - {x: 14, y: 41}
+      - - {x: -22, y: 6}
+        - {x: -20, y: 3}
+        - {x: -17, y: 5}
+        - {x: -18, y: 9}
+        - {x: -20, y: 11}
+        - {x: -22, y: 11}
+      - - {x: 18, y: 4}
+        - {x: 21, y: 5}
+        - {x: 21, y: 8}
+        - {x: 18, y: 9}
+        - {x: 16, y: 7}
+      - - {x: 17, y: 26}
+        - {x: 16, y: 24}
+        - {x: 16, y: 20}
+        - {x: 19, y: 14}
+        - {x: 21, y: 14}
+        - {x: 22, y: 15}
+        - {x: 22, y: 22}
+        - {x: 19, y: 26}
+      - - {x: -22, y: 17}
+        - {x: -21, y: 16}
+        - {x: -18, y: 17}
+        - {x: -18, y: 20}
+        - {x: -20, y: 22}
+        - {x: -22, y: 21}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_23
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 133
+        width: 60
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 22}
+        - {x: 23, y: 15}
+        - {x: 14, y: 36}
+        - {x: 12, y: 41}
+        - {x: -7, y: 41}
+        - {x: -11, y: 40}
+        - {x: -30, y: 19}
+        - {x: -30, y: -22}
+        - {x: -22, y: -41}
+        - {x: -5, y: -41}
+        - {x: 0, y: -40}
+        - {x: 2, y: -36}
+        - {x: 2, y: -33}
+        - {x: 2, y: -36}
+        - {x: 1, y: -41}
+        - {x: 14, y: -41}
+        - {x: 30, y: -9}
+        - {x: 30, y: 18}
+        - {x: 28, y: 26}
+      - - {x: 17, y: 7}
+        - {x: 17, y: 9}
+        - {x: 14, y: 4}
+      - - {x: 11, y: 21}
+        - {x: 7, y: 24}
+        - {x: 7, y: 23}
+        - {x: 10, y: 24}
+        - {x: 10, y: 18}
+        - {x: 11, y: 17}
+        - {x: 12, y: 18}
+      - - {x: -29, y: 27}
+        - {x: -29, y: 17}
+        - {x: -24, y: 17}
+        - {x: -14, y: 32}
+        - {x: -14, y: 41}
+        - {x: -22, y: 41}
+        - {x: -28, y: 35}
+      - - {x: -10, y: 26}
+        - {x: -13, y: 24}
+        - {x: -12, y: 24}
+      - - {x: 12, y: 41}
+        - {x: 12, y: 39}
+        - {x: 21, y: 31}
+        - {x: 24, y: 32}
+        - {x: 24, y: 37}
+        - {x: 21, y: 41}
+      physicsShape:
+      - - {x: 21, y: 30}
+        - {x: 16, y: 41}
+        - {x: -22, y: 41}
+        - {x: -22, y: -32}
+        - {x: -11, y: -40}
+        - {x: -9, y: -41}
+        - {x: 11, y: -41}
+        - {x: 12, y: -40}
+        - {x: 19, y: -24}
+        - {x: 21, y: -13}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 421
+        width: 49
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 421
+        width: 49
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_2
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 421
+        width: 47
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_3
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 421
+        width: 49
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_4
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 325
+        width: 48
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_5
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 326
+        width: 48
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_6
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 326
+        width: 52
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_7
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 326
+        width: 57
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_9
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 326
+        width: 51
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_11
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 326
+        width: 51
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 229
+        width: 47
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_13
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 230
+        width: 42
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_14
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 231
+        width: 45
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_15
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 231
+        width: 45
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_16
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 231
+        width: 45
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enm3_17
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 231
+        width: 47
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
