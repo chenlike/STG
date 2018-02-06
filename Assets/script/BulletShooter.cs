@@ -1,83 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DanmuLib;
 
 
 public class BulletShooter : Enemy
 {
 
-    List<GameObject> bulletPool = new List<GameObject>();
 
-    IEnumerator KeepShoot(int num,Transform ts)
+    private IEnumerator RotateSelf(float angleStep, float totalSleepTime, float reduceTime, float limitMinTime)
     {
-        // print(Time.time);
-        int i = 0;
-       for (i = 0; i < 100; i++)
-        {
-            yield return new WaitForSeconds(0.5f);
 
-            CreateCircleBullet(i,ts);
-
-        }
-
-    }
-    IEnumerator RotateSelf()
-    {
-        // print(Time.time);
-        yield return new WaitForSeconds(2f);
         float angle = 0f;
 
-        float sleepTime = 1f;
+        float sleepTime = totalSleepTime;
         while (true)
         {
             yield return new WaitForSeconds(sleepTime);
 
             ChangeFaceAngle(angle);
-            angle -= 2f;
-            if(sleepTime >= 0.0001)
+            angle -= angleStep;
+            if (sleepTime >= limitMinTime)
             {
-                sleepTime -= sleepTime/2f;
+                sleepTime -= reduceTime;
             }
-            if (angle <= -360f) angle = 0;
+
         }
-        
+
 
     }
 
-
-    protected override void DoStart()
+    protected void StartRotate(float angleStep, float totalSleepTime, float reduceTime, float limitMinTime)
     {
-        StartCoroutine(KeepShoot(1,this.transform));
-        //StartCoroutine(RotateSelf());
+        StartCoroutine(RotateSelf(angleStep, totalSleepTime, reduceTime, limitMinTime));
     }
-
-    protected override void DoUpdate()
+    protected void StopRotate()
     {
-
-        
+        StopCoroutine("RotateSelf");
     }
 
 
-    public void CreateCircleBullet(int num,Transform ts)
-    {
-        float angle = 0f;
-        if (num == 0) return;
-        GameObject bulletTemplate = Resources.Load("bul1") as GameObject;
 
-        for (; angle < 360f; angle += 360f / (float)num)
+
+    protected void Shoot(List<GameObject> list)
+    {
+        foreach (GameObject bullet in list)
         {
-            GameObject bullet = Instantiate(bulletTemplate, ts);
-            bullet.transform.position = ts.position;
-            bullet.AddComponent<Bullet>();
-            bullet.GetComponent<Bullet>().ChangeFaceAngle(angle+nowAngle);
-            bullet.GetComponent<Bullet>().moveSpeed = 1.66f;
-            bullet.GetComponent<Bullet>().isAlive = true;
-            bullet.transform.parent = null;
-            
-      
+            bullet.SetActive(true);
         }
-
-
     }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
 }

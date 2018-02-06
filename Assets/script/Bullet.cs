@@ -5,12 +5,12 @@ using UnityEngine;
 public class Bullet : Enemy {
 
     
-    protected override void DoStart()
+    void DoStart()
     {
         
     }
 
-    protected override void DoUpdate()
+    void Update()
     {
         //    target = GameObject.Find("player");
         // orientation = target.transform.position;
