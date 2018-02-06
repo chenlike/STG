@@ -10,9 +10,6 @@ public class Enemy : MonoBehaviour {
     protected Vector3 orientation;
     //目前的旋转角度
     protected float nowAngle = 0f;
-    //旋转
-    protected float rotateSpeed = 0f;
-    protected float rotateAngle = 0f;
 
     
 
@@ -29,15 +26,15 @@ public class Enemy : MonoBehaviour {
         DoStart();
 	}
     // Update is called once per frame
-    void Update () {
+
+    private void FixedUpdate()
+    {
         DoUpdate();
         if (isAlive)
         {
             MoveTowards();
         }
-
     }
-
     /*
              //Vector3 direction = orientation - transform.position;
         //float angle = 360 - Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
@@ -51,11 +48,10 @@ public class Enemy : MonoBehaviour {
     {
 
         if (moveSpeed == 0f ) return;
-
         //Vector3 direction = orientation - transform.position;
         //float angle = 360 - Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         //transform.eulerAngles = new Vector3(0, 0, angle);
-        transform.position += transform.up* moveSpeed * Time.deltaTime;
+        transform.position += transform.up* moveSpeed*Time.deltaTime;
          
     }
 

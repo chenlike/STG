@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bullet : Enemy {
 
-
+    
     protected override void DoStart()
     {
-        Debug.Log(this.name + " " + transform.position);
+        
     }
 
     protected override void DoUpdate()
@@ -16,6 +16,7 @@ public class Bullet : Enemy {
         // orientation = target.transform.position;
         if((transform.position.x>=4 || transform.position.x <= -4) 
             || (transform.position.y >=5.5 || transform.position.y <= -5.5)){
+
             Destroy(this.gameObject);
         }
     }

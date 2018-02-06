@@ -19,8 +19,14 @@ public class Player : MonoBehaviour {
 
     }
 
-
-
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "EnemyBullet")
+        {
+            Destroy(other.gameObject);
+            this.transform.position = new Vector3(0, -4, 0);
+        }
+    }
 
     /// <summary>
     /// 键盘移动
