@@ -4,20 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-
-
-    float TOUCH_SPEED = 1.8f;
+    GameObject target;
+    float TOUCH_SPEED = 2.8f;
     float KEYBOARD_SPEED = 0.1f;
     float KEYBOARD_MOVE_LEN = 1f;
 	void Start () {
-
+        target = GameObject.Find("123");
     }
 	
 	// Update is called once per frame
 	void Update () {
         MoveByKeyBoard();
         MoveByTouch();
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -27,6 +25,7 @@ public class Player : MonoBehaviour {
             Destroy(other.gameObject);
             this.transform.position = new Vector3(0, -4, 0);
         }
+        
     }
 
     /// <summary>

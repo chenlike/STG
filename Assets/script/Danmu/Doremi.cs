@@ -3,27 +3,111 @@ using System.Collections.Generic;
 using UnityEngine;
 using DanmuLib;
 public class Doremi : BulletShooter {
-    GameObject tem;
-    Animator ator;
-    public void rreset()
-    {
-        ator.SetInteger("move", 0);
-    }
-    IEnumerator DanmuShootLoop()
+    Dictionary<string, GameObject> dm = new Dictionary<string, GameObject>();
+    string[] arrPic = new string[9];
+    GameObject player;
+
+    IEnumerator ShootCar()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
-            List<GameObject> fireList = CircleDanmu.CreateCircle(tem, this.transform, 36, 1.66f);
+            yield return new WaitForSeconds(2f);
+            GetComponentInParent<CharacterAni>().SetMove(3);
+            float speed = 2.5f;
+            float speedStep = 0.2f;
+            float moveStep = 0.2f;
+
+            Vector3 pos = new Vector3(transform.position.x-1f, transform.position.y, transform.position.z);
+            List<GameObject> mainList = 
+                DanmuLib.FocusDanmu.CreateMultiDanmu(dm["greenArrow"], new Vector3(pos.x+moveStep*5,pos.y,pos.z),player.transform.position,10,speed+speedStep*5);
+            foreach(GameObject obj in mainList)
+            {
+                obj.transform.parent = this.gameObject.transform;
+            }
+           
+            Vector3 angle = mainList[0].transform.eulerAngles;
+            List<GameObject>[] arrowList= new List<GameObject>[9];
+            arrowList[4] = mainList;
+
+            float changeSpeed = 1;
+            for(int i = 0; i < 9; i++)
+            {
+                pos.x += moveStep;             
+                speed += speedStep * changeSpeed;
+                if (i == 4)
+                {
+                    changeSpeed = -1;
+
+                    continue;
+                }
+                arrowList[i] = DanmuLib.FocusDanmu.CreateMultiDanmu(dm[arrPic[i]], pos, player.transform.position, 10, speed);
+                foreach (GameObject bb in arrowList[i])
+                {
+                    bb.transform.parent = this.gameObject.transform;
+                    bb.transform.eulerAngles = angle;
+                }
+            }
+
+
+            for (int i = 0; i < 9; i++)
+            {
+                foreach(GameObject obj in arrowList[i])
+                {
+                    obj.transform.parent = null;
+                }
+                Shoot(arrowList[i], 0.07f);
+
+            }
+
+
+
+        }
+    }
+
+    IEnumerator ShootCircle()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            List<GameObject> fireList = CircleDanmu.CreateCircleDanmu(dm["redBall"], transform.position, 36, 1.06f);
             Shoot(fireList);
-            ator.SetInteger("move", 3);
         }
 
     }
+    private void InitRes()
+    {
+        dm["redBall"] = Resources.Load("bullet/Ball/RedBall") as GameObject;
+        dm["greenArrow"] = Resources.Load("bullet/Arrow/greenArrow") as GameObject;
+        dm["blueArrow"] = Resources.Load("bullet/Arrow/blueArrow") as GameObject;
+        dm["blueArrowLow"] = Resources.Load("bullet/Arrow/blueArrowLow") as GameObject;
+        dm["pupArrow"] = Resources.Load("bullet/Arrow/pupArrow") as GameObject;
+        dm["pupArrowLow"] = Resources.Load("bullet/Arrow/pupArrowLow") as GameObject;
+        dm["redArrow"] = Resources.Load("bullet/Arrow/redArrow") as GameObject;
+        dm["redArrowLow"] = Resources.Load("bullet/Arrow/redArrowLow") as GameObject;
+        dm["yellowArrow"] = Resources.Load("bullet/Arrow/yellowArrow") as GameObject;
+        dm["yellowArrowLow"] = Resources.Load("bullet/Arrow/yellowArrowLow") as GameObject;
+        arrPic[0] = "pupArrowLow";
+        arrPic[1] = "pupArrow";
+        arrPic[2] = "blueArrow";
+        arrPic[3] = "blueArrowLow";
+        arrPic[4] = "greenArrow";
+        arrPic[5] = "redArrowLow";
+        arrPic[6] = "yellowArrowLow";
+        arrPic[7] = "yellowArrow";
+        arrPic[8] = "redArrow";
+    }
     private void Start()
     {
-        ator = GetComponent<Animator>();
-        tem = Resources.Load("bullet/RedBall") as GameObject;
-        StartCoroutine(DanmuShootLoop());
+        player = GameObject.Find("player");
+
+        InitRes();
+        StartCoroutine(ShootCircle());
+        StartCoroutine(ShootCar());
     }
+    private void Update()
+    {
+
+
+    }
+
 }
