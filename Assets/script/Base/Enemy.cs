@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour {
     //移动速度
     public float moveSpeed = 0f;
     //目前的旋转角度
-    protected float nowAngle = 0f;
+    public float nowAngle = 0f;
 
 
 
@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour {
     void MoveAhead()
     {
         if (moveSpeed == 0f ) return;
+        
         transform.position += transform.up* moveSpeed*Time.deltaTime;
     }
 

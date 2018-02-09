@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class MainControl : MonoBehaviour {
 
-    public void SendDeadMsg(GameObject target)
-    {
-        
-
-    }
 
 }

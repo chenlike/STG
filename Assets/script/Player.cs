@@ -4,18 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-    GameObject target;
+
     float TOUCH_SPEED = 2.8f;
-    float KEYBOARD_SPEED = 0.1f;
+    float KEYBOARD_SPEED = 0.25f;
     float KEYBOARD_MOVE_LEN = 1f;
 	void Start () {
-        target = GameObject.Find("123");
+
     }
 	
 	// Update is called once per frame
 	void Update () {
         MoveByKeyBoard();
         MoveByTouch();
+
+
+            if ((transform.position.x >= 4 || transform.position.x <= -4)
+        || (transform.position.y >= 5.5 || transform.position.y <= -5.5))
+            {
+            GameObject.Find("Main Camera").GetComponent<SceneControl>().now = 0;
+            this.transform.position = new Vector3(0, -4, 0);
+        }
+
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -24,6 +34,12 @@ public class Player : MonoBehaviour {
         {
             Destroy(other.gameObject);
             this.transform.position = new Vector3(0, -4, 0);
+            var objs =GameObject.FindGameObjectsWithTag("EnemyBullet");
+            GameObject.Find("Main Camera").GetComponent<SceneControl>().now = 0;
+            foreach(GameObject a in objs)
+            {
+                Destroy(a);
+            }
         }
         
     }

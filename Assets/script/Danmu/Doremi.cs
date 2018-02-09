@@ -6,7 +6,7 @@ public class Doremi : BulletShooter {
     Dictionary<string, GameObject> dm = new Dictionary<string, GameObject>();
     string[] arrPic = new string[9];
     GameObject player;
-
+    
     IEnumerator ShootCar()
     {
         while (true)
@@ -63,12 +63,11 @@ public class Doremi : BulletShooter {
 
         }
     }
-
     IEnumerator ShootCircle()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2.5f);
             List<GameObject> fireList = CircleDanmu.CreateCircleDanmu(dm["redBall"], transform.position, 36, 1.06f);
             Shoot(fireList);
         }
@@ -76,16 +75,19 @@ public class Doremi : BulletShooter {
     }
     private void InitRes()
     {
-        dm["redBall"] = Resources.Load("bullet/Ball/RedBall") as GameObject;
-        dm["greenArrow"] = Resources.Load("bullet/Arrow/greenArrow") as GameObject;
-        dm["blueArrow"] = Resources.Load("bullet/Arrow/blueArrow") as GameObject;
-        dm["blueArrowLow"] = Resources.Load("bullet/Arrow/blueArrowLow") as GameObject;
-        dm["pupArrow"] = Resources.Load("bullet/Arrow/pupArrow") as GameObject;
-        dm["pupArrowLow"] = Resources.Load("bullet/Arrow/pupArrowLow") as GameObject;
-        dm["redArrow"] = Resources.Load("bullet/Arrow/redArrow") as GameObject;
-        dm["redArrowLow"] = Resources.Load("bullet/Arrow/redArrowLow") as GameObject;
-        dm["yellowArrow"] = Resources.Load("bullet/Arrow/yellowArrow") as GameObject;
-        dm["yellowArrowLow"] = Resources.Load("bullet/Arrow/yellowArrowLow") as GameObject;
+
+
+        dm["redBall"] = Resources.Load("Bullet/redBall") as GameObject;
+
+        dm["greenArrow"] = Resources.Load("Bullet/greenArrow") as GameObject;
+        dm["blueArrow"] = Resources.Load("Bullet/blueArrow") as GameObject;
+        dm["blueArrowLow"] = Resources.Load("Bullet/blueArrowLow") as GameObject;
+        dm["pupArrow"] = Resources.Load("Bullet/pupArrow") as GameObject;
+        dm["pupArrowLow"] = Resources.Load("Bullet/pupArrowLow") as GameObject;
+        dm["redArrow"] = Resources.Load("Bullet/redArrow") as GameObject;
+        dm["redArrowLow"] = Resources.Load("Bullet/redArrowLow") as GameObject;
+        dm["yellowArrow"] = Resources.Load("Bullet/yellowArrow") as GameObject;
+        dm["yellowArrowLow"] = Resources.Load("Bullet/yellowArrowLow") as GameObject;
         arrPic[0] = "pupArrowLow";
         arrPic[1] = "pupArrow";
         arrPic[2] = "blueArrow";
@@ -98,7 +100,7 @@ public class Doremi : BulletShooter {
     }
     private void Start()
     {
-        player = GameObject.Find("player");
+        player = GameObject.Find("player(Clone)");
 
         InitRes();
         StartCoroutine(ShootCircle());
