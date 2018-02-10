@@ -5,31 +5,26 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
-    float TOUCH_SPEED = 2.8f;
-    float KEYBOARD_SPEED = 0.25f;
+    float TOUCH_SPEED = 2.4f;
+    float KEYBOARD_SPEED = 0.07f;
     float KEYBOARD_MOVE_LEN = 1f;
+    Dictionary<string, bool> keyDown = new Dictionary<string, bool>();
+
 	void Start () {
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        MoveByKeyBoard();
         MoveByTouch();
-
-
-            if ((transform.position.x >= 4 || transform.position.x <= -4)
-        || (transform.position.y >= 5.5 || transform.position.y <= -5.5))
-            {
-            GameObject.Find("Main Camera").GetComponent<SceneControl>().now = 0;
-            this.transform.position = new Vector3(0, -4, 0);
-        }
-
-        
+        MoveByKeyBoard();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
+
+
         if(other.tag == "EnemyBullet")
         {
             Destroy(other.gameObject);
@@ -41,7 +36,9 @@ public class Player : MonoBehaviour {
                 Destroy(a);
             }
         }
-        
+
+
+
     }
 
     /// <summary>
@@ -67,7 +64,16 @@ public class Player : MonoBehaviour {
         {
             newPlayerPosition.x += KEYBOARD_MOVE_LEN * KEYBOARD_SPEED;
         }
-        //this.transform.position = newPlayerPosition;
+
+
+        if(newPlayerPosition.x< -2.752 || newPlayerPosition.x > 2.752)
+        {
+            newPlayerPosition.x = transform.position.x;
+        }
+        if (newPlayerPosition.y < -4.958 || newPlayerPosition.y > 4.958)
+        {
+            newPlayerPosition.y = transform.position.y;
+        }
         this.transform.position = Vector2.Lerp(transform.position, newPlayerPosition, 0.3f);
     }
     /// <summary>
@@ -83,8 +89,8 @@ public class Player : MonoBehaviour {
                 float mouseY = Input.GetAxis("Mouse Y");    //手指垂直移动的距离
                 Vector2 newPlayerPosition = transform.position;
 
-                newPlayerPosition.x += mouseX* TOUCH_SPEED * Time.deltaTime;
-                newPlayerPosition.y += mouseY* TOUCH_SPEED * Time.deltaTime;
+                newPlayerPosition.x += mouseX * TOUCH_SPEED * Time.deltaTime;
+                newPlayerPosition.y += mouseY * TOUCH_SPEED * Time.deltaTime;
                 this.transform.position = newPlayerPosition;
             }
         }

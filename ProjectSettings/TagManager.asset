@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - EnemyBullet
+  - up
+  - down
+  - left
+  - right
   layers:
   - Default
   - TransparentFX

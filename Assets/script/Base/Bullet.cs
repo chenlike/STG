@@ -6,34 +6,35 @@ using UnityEngine;
 public class Bullet : Enemy {
 
     public delegate void BulletEvent(GameObject me);
-    public BulletEvent OnDestoryEvent;
+    public delegate void TouchWall(GameObject me, GameObject touchObj);
+    public TouchWall OnDestoryEvent;
     public BulletEvent UpdateEvent;
     public BulletEvent  StartEvent;
-
+    public bool TouchDontDestory { get; set; }
     private void Start()
     {
-        if(StartEvent!=null)
+        if (StartEvent != null)
+        {
+            Debug.Log("??");
             StartEvent(this.gameObject);
+        }
     }
     private void Update()
     {
         if (UpdateEvent != null)
             UpdateEvent(this.gameObject);
         UpdateEvent = null;
-        CheckDead();
     }
 
-    private void CheckDead()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((transform.position.x >= 4 || transform.position.x <= -4)
-    || (transform.position.y >= 5.5 || transform.position.y <= -5.5))
-        {
-            if (OnDestoryEvent != null)
-                OnDestoryEvent(this.gameObject);
+        if (OnDestoryEvent != null)
+            
+            OnDestoryEvent(this.gameObject,collision.gameObject);
+        if(!TouchDontDestory)
             Destroy(this.gameObject);
-        }
-
     }
+
 
 
 }

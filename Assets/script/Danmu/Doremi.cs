@@ -76,18 +76,17 @@ public class Doremi : BulletShooter {
     private void InitRes()
     {
 
-
-        dm["redBall"] = Resources.Load("Bullet/redBall") as GameObject;
-
-        dm["greenArrow"] = Resources.Load("Bullet/greenArrow") as GameObject;
-        dm["blueArrow"] = Resources.Load("Bullet/blueArrow") as GameObject;
-        dm["blueArrowLow"] = Resources.Load("Bullet/blueArrowLow") as GameObject;
-        dm["pupArrow"] = Resources.Load("Bullet/pupArrow") as GameObject;
-        dm["pupArrowLow"] = Resources.Load("Bullet/pupArrowLow") as GameObject;
-        dm["redArrow"] = Resources.Load("Bullet/redArrow") as GameObject;
-        dm["redArrowLow"] = Resources.Load("Bullet/redArrowLow") as GameObject;
-        dm["yellowArrow"] = Resources.Load("Bullet/yellowArrow") as GameObject;
-        dm["yellowArrowLow"] = Resources.Load("Bullet/yellowArrowLow") as GameObject;
+        SceneControl sc = GameObject.Find("Main Camera").GetComponent<SceneControl>();
+        dm["redBall"] = sc.GetResByName("redBall"); 
+        dm["greenArrow"] = sc.GetResByName("greenArrow");
+        dm["blueArrow"] = sc.GetResByName("blueArrow");
+        dm["blueArrowLow"] = sc.GetResByName("blueArrowLow");
+        dm["pupArrow"] = sc.GetResByName("pupArrow");
+        dm["pupArrowLow"] = sc.GetResByName("pupArrowLow");
+        dm["redArrow"] = sc.GetResByName("redArrow");
+        dm["redArrowLow"] = sc.GetResByName("redArrowLow");
+        dm["yellowArrow"] = sc.GetResByName("yellowArrow");
+        dm["yellowArrowLow"] = sc.GetResByName("yellowArrowLow");
         arrPic[0] = "pupArrowLow";
         arrPic[1] = "pupArrow";
         arrPic[2] = "blueArrow";

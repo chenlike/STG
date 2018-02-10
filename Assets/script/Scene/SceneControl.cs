@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class SceneControl : MonoBehaviour {
 
+    Dictionary<string, GameObject> resources = new Dictionary<string, GameObject>();
     int max = 0;
     public int now = 0;
+
+    
+
     void SetNum()
     {
-        GameObject text = GameObject.Find("Text");
+        GameObject text = GameObject.Find("score");
         text.GetComponent<Text>().text = "Max:" + max + " \nNow:" + now;
     }
     IEnumerator ttime()
@@ -28,8 +32,26 @@ public class SceneControl : MonoBehaviour {
             SetNum();
         }
     }
+
+    public GameObject GetResByName(string name)
+    {
+        return resources[name];
+    }
+    void LoadAllResources()
+    {
+        var list = Resources.LoadAll("bullet");
+        foreach(var i in list)
+        {
+            GameObject t = (GameObject)i;
+            resources[t.name] = t;
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
+        LoadAllResources();
+        Application.targetFrameRate = 120;
+
         max = PlayerPrefs.GetInt("max");
         StartCoroutine(ttime());
         GameObject play = Resources.Load("character/player") as GameObject;

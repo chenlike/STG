@@ -7,21 +7,28 @@ public class Aboluo : BulletShooter
 {
     GameObject blueStar;
     GameObject laser;
+    
     void InitRes()
     {
+        SceneControl sc = GameObject.Find("Main Camera").GetComponent<SceneControl>();
 
-        blueStar = Resources.Load("Bullet/blueStar") as GameObject;
-        laser = Resources.Load("Bullet/laser") as GameObject;
+        blueStar = sc.GetResByName("blueStar"); 
+        laser = sc.GetResByName("greenArrow"); 
     }
 
-    void TouchWall(GameObject target)
+    void TouchWall(GameObject target, GameObject touchObj)
     {
 
-        float angle = target.GetComponent<Enemy>().nowAngle;
+        float angle = target.transform.eulerAngles.z;
 
         GameObject obj = DanmuLib.SingleDanmu.CreateSingleDanmu(laser, target.transform.position, 1.66f);
         Bullet blt = obj.GetComponent<Bullet>();
-        blt.ChangeFaceAngle(-1*(angle));
+        if (touchObj.name == "up" || touchObj.name == "down")
+            blt.ChangeFaceAngle(angle + 180);
+        else
+            blt.ChangeFaceAngle(-1*(angle));
+
+
         obj.SetActive(true);
 
     }
@@ -31,7 +38,11 @@ public class Aboluo : BulletShooter
         while (true)
         {
             yield return new WaitForSeconds(2);
-            List<GameObject> list = CircleDanmu.CreateCircleDanmu(blueStar, transform, 36, 1.66f);
+            int ran = Random.Range(0, 5);
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            pos.x += ran*0.05f * ran % 2 == 0 ? 1 : -1;
+            pos.y += ran*0.05f * ran % 2 == 0 ? -1 : 1;
+            List<GameObject> list = CircleDanmu.CreateCircleDanmu(blueStar, pos, 36, 1.66f);
             foreach (GameObject obj in list)
             {
                 Bullet b = obj.GetComponent<Bullet>();
@@ -40,6 +51,11 @@ public class Aboluo : BulletShooter
             Shoot(list);
         }
     }
+
+
+
+
+
 
     // Use this for initialization
     void Start()
@@ -52,6 +68,7 @@ public class Aboluo : BulletShooter
     void Update()
     {
 
+        
     }
 
 

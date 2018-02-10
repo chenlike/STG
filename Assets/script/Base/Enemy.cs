@@ -36,7 +36,8 @@ public class Enemy : MonoBehaviour {
     /// <param name="angle">角度</param>
     public void ChangeFaceAngle(float angle)
     {
-        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        transform.eulerAngles = new Vector3(0, 0, angle);
+        //transform.rotation = Quaternion.Euler(0f, 0f, angle);
         nowAngle = angle;
     }
 
