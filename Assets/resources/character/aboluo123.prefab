@@ -21,8 +21,7 @@ GameObject:
   - component: {fileID: 4174612773046200}
   - component: {fileID: 212397497953087230}
   - component: {fileID: 95777412399609872}
-  - component: {fileID: 114853224672235772}
-  - component: {fileID: 114482321748387694}
+  - component: {fileID: 114967892449749968}
   m_Layer: 0
   m_Name: aboluo123
   m_TagString: Untagged
@@ -38,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4954556680823528}
-  - component: {fileID: 114127291425303892}
+  - component: {fileID: 114504559532823856}
   m_Layer: 0
   m_Name: bullet4_3
   m_TagString: Untagged
@@ -53,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1942381458285508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8353729, y: -1.9721149, z: 0}
+  m_LocalPosition: {x: -2.649075, y: -0.8334611, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4954556680823528}
@@ -90,7 +89,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114127291425303892
+--- !u!114 &114504559532823856
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -98,12 +97,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999901551922572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667e9ed57ee99074aa046644b19bbde6, type: 3}
+  m_Script: {fileID: 11500000, guid: 65b496a012e022e48aff267034a56eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
   nowAngle: 0
---- !u!114 &114482321748387694
+--- !u!114 &114967892449749968
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,22 +110,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1942381458285508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9cf7e17eb21adb488c7b270ebb6fab8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dea2d4583244604d8f3cabd6fd43005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
   nowAngle: 0
---- !u!114 &114853224672235772
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1942381458285508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfb9274a5696d3a4cbedb735624f7c95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212397497953087230
 SpriteRenderer:
   m_ObjectHideFlags: 1
