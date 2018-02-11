@@ -60,7 +60,9 @@ public class EnemyBase : MonoBehaviour
         
         if (collision.gameObject.transform.parent != null && collision.gameObject.transform.parent.gameObject.name == "Wall")
         {
-            Destroy(this.gameObject, destroyTime);
+
+            DanmuUtil.objPool.AddToPool(this.gameObject);
+            Destroy(this);
         }
     }
 

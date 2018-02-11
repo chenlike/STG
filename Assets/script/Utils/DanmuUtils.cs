@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 namespace Utils
 {
-    class DanmuUtil
+    
+    static class DanmuUtil
     {
+        public static ObjectPool objPool = GameObject.Find("GameObjectPool").GetComponent<ObjectPool>();
         /// <summary>
         /// 按Transform实例化
         /// </summary>
@@ -14,9 +16,19 @@ namespace Utils
         /// <returns></returns>
         public static GameObject InitTemplate(GameObject template, Transform ts)
         {
-            GameObject obj = Object.Instantiate(template, ts);
-            obj.SetActive(false);
-            return obj;
+            var getRes = objPool.FindGameObject(template.name);
+            if (getRes == null)
+            {
+                GameObject obj =    Object.Instantiate(template, ts) as GameObject;
+                obj.SetActive(false);
+                //Debug.Log("no");
+                return obj;
+            }
+            else
+            {
+                return getRes;
+            }
+            
         }
         /// <summary>
         /// 按坐标实例化
@@ -26,9 +38,20 @@ namespace Utils
         /// <returns></returns>
         public static GameObject InitTemplate(GameObject template, Vector3 position)
         {
-            GameObject obj = Object.Instantiate(template, position, Quaternion.identity);
-            obj.SetActive(false);
-            return obj;
+
+            var getRes = objPool.FindGameObject(template.name);
+            if (getRes == null)
+            {
+                GameObject obj = Object.Instantiate(template, position, Quaternion.identity);
+                obj.SetActive(false);
+                //Debug.Log("no ");
+                return obj;
+            }
+            else
+            {
+                Debug.Log("get ");
+                return getRes;
+            }
         }
         /// <summary>
         /// 面向目标
@@ -68,10 +91,12 @@ namespace Utils
         public static GameObject CreateSingleDanmu(GameObject bulletTemplate, Transform ts, float angle, float speed, bool connectWithParent)
         {
             GameObject obj = DanmuUtil.InitTemplate(bulletTemplate, ts.position);
+
             if (!connectWithParent)
                 obj.transform.parent = null;
             obj.AddComponent<BulletBase>();
             BulletBase bul = obj.GetComponent<BulletBase>();
+
             bul.speed = speed;
             TransformUtils.RotateFromZero(obj, angle);
             return obj;
@@ -82,6 +107,7 @@ namespace Utils
             GameObject obj = DanmuUtil.InitTemplate(bulletTemplate, pos);
             obj.AddComponent<BulletBase>();
             BulletBase bul = obj.GetComponent<BulletBase>();
+
             bul.speed = speed;
             TransformUtils.RotateFromZero(obj, 0f);
             return obj;
@@ -122,10 +148,12 @@ namespace Utils
                 GameObject bullet = DanmuUtil.InitTemplate(bulletTemplate, parent);
                 bullet.transform.position = parent.position;
                 bullet.AddComponent<BulletBase>();
-                //parent.rotation.z范围是 -1<z<1  所以*=100
-                TransformUtils.RotateFromZero(bullet, angle + parent.rotation.z * 100);
 
+                //parent.rotation.z范围是 -1<z<1  所以*=100
+                //TransformUtils.RotateFromZero(bullet, angle + parent.rotation.z * 100);
+                bullet.GetComponent<BulletBase>().ChangeFace(angle + parent.rotation.z * 100);
                 bullet.GetComponent<BulletBase>().speed = speed;
+
                 if (!connectWithParent)
                     bullet.transform.parent = null;
                 danmuList.Add(bullet);
@@ -146,7 +174,8 @@ namespace Utils
                 GameObject bullet = DanmuUtil.InitTemplate(bulletTemplate, pos);
                 bullet.transform.position = pos;
                 bullet.AddComponent<BulletBase>();
-                TransformUtils.RotateFromZero(bullet, angle);
+                //TransformUtils.RotateFromZero(bullet, angle);
+                bullet.GetComponent<BulletBase>().ChangeFace(angle);
                 bullet.GetComponent<BulletBase>().speed = speed;
                 danmuList.Add(bullet);
             }
@@ -169,18 +198,19 @@ namespace Utils
             if (num == 0) return danmuList;
 
             float angle = 0f;
-
-            for (; angle < 360f; angle += 360f / (float)num)
+            float angleStep = 360f / num;
+            for (; angle < 360f; angle += angleStep)
             {
 
                 GameObject bullet = DanmuUtil.InitTemplate(bulletTemplate, parent);
                 bullet.transform.position = parent.position;
                 bullet.AddComponent<BulletBase>();
                 //parent.rotation.z范围是 -1<z<1  所以*=100
-
-                TransformUtils.RotateFromZero(bullet, angle+parent.rotation.z*100);
-                bullet.AddComponent<BulletBase>().nowAngle = angle + parent.rotation.z * 100;
+                bullet.GetComponent<BulletBase>().ChangeFace(angle + parent.rotation.z * 100);
+                //TransformUtils.RotateFromZero(bullet, angle+parent.rotation.z*100);
+                bullet.GetComponent<BulletBase>().nowAngle = angle + parent.rotation.z * 100;
                 bullet.GetComponent<BulletBase>().speed = speed;
+
                 if (!connectWithParent)
                     bullet.transform.parent = null;
                 danmuList.Add(bullet);
@@ -198,14 +228,16 @@ namespace Utils
             if (num == 0) return danmuList;
 
             float angle = 0f;
-
-            for (; angle < 360f; angle += 360f / (float)num)
+            float angleStep = 360f /num;//36/2
+            for (; angle < 360f; angle += angleStep)
             {
                 GameObject bullet = DanmuUtil.InitTemplate(bulletTemplate, position);
                 bullet.transform.position = position;
                 bullet.AddComponent<BulletBase>();
-                TransformUtils.RotateFromZero(bullet, angle);
+                bullet.GetComponent<BulletBase>().ChangeFace(angle);
+                //TransformUtils.RotateFromZero(bullet, angle);
                 bullet.GetComponent<BulletBase>().speed = speed;
+
                 bullet.transform.parent = null;
                 danmuList.Add(bullet);
 
@@ -225,6 +257,7 @@ namespace Utils
             DanmuUtil.ChangeFocus(obj, target);
             obj.AddComponent<BulletBase>();
             obj.GetComponent<BulletBase>().speed = speed;
+            obj.GetComponent<BulletBase>().templateName = template.name;
             obj.transform.parent = null;
             return obj;
         }

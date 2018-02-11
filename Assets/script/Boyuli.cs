@@ -13,9 +13,9 @@ public class Boyuli : BulletShooterBase
         while (true)
         {
 
-                yield return new WaitForSeconds(0.08f);
-                var list = CircleDanmu.CreateCircleDanmu(tem, this.transform, 21, 0.02f);
-                Shoot(list);
+            yield return new WaitForSeconds(0.1f);
+            var list = CircleDanmu.CreateCircleDanmu(tem, this.transform, 13, 0.02f);
+            Shoot(list);
 
         }
 
