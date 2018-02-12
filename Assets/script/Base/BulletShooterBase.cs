@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class BulletShooterBase : EnemyBase
 {
 
+    
+
+    
     private IEnumerator DelayShoot(List<GameObject> list, float delayTime)
     {
         foreach (GameObject obj in list)
@@ -29,8 +32,10 @@ public class BulletShooterBase : EnemyBase
     protected void Shoot(List<GameObject> list, float delayTime)
     {
         StartCoroutine(DelayShoot(list, delayTime));
-        
     }
+
+
+    
 
 
 }

@@ -60,8 +60,19 @@ public class SceneControl : MonoBehaviour
         GameObject enm = Resources.Load("character/aboluo123") as GameObject;
         play = Utils.DanmuUtil.InitTemplate(play, new Vector3(0, -3, 0));
         enm = Utils.DanmuUtil.InitTemplate(enm, new Vector3(0, 3, 0));
+
+
+        CharacterBase doremiChararcterBase =  enm.AddComponent<CharacterBase>();
+        doremiChararcterBase.spellList.Add();
+
+
+
+
+
+
+
         play.SetActive(true);
-       // enm.SetActive(true);
+        enm.SetActive(true);
     }
 
     // Update is called once per frame

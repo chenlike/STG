@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4174612773046200}
   - component: {fileID: 212397497953087230}
   - component: {fileID: 95777412399609872}
-  - component: {fileID: 114967892449749968}
   m_Layer: 0
   m_Name: aboluo123
   m_TagString: Untagged
@@ -101,18 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
-  nowAngle: 0
---- !u!114 &114967892449749968
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1942381458285508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dea2d4583244604d8f3cabd6fd43005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   nowAngle: 0
 --- !u!212 &212397497953087230
 SpriteRenderer:

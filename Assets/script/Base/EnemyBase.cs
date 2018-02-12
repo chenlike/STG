@@ -24,7 +24,10 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     protected StatusEvent updateEvent;
     protected float destroyTime = 0f;
+
     public float nowAngle = 0f;
+    public Vector3 position;
+
 
     /// <summary>
     /// 修改朝向 (瞬时)
@@ -58,7 +61,6 @@ public class EnemyBase : MonoBehaviour
 
         if (collision.gameObject.transform.parent != null && collision.gameObject.transform.parent.gameObject.name == "Wall")
         {
-
             this.gameObject.SetActive(false);
             DanmuUtil.objPool.AddToPool(this.gameObject);
             Destroy(this);
