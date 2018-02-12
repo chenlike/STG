@@ -2,6 +2,7 @@
 using System.Collections;
 using Utils;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Boyuli : BulletShooterBase
 {
@@ -12,17 +13,32 @@ public class Boyuli : BulletShooterBase
     {
         while (true)
         {
+            yield return new WaitForSecondsRealtime(0.04f);
+            var list = CircleDanmu.CreateCircleDanmu(tem, this.transform, 20, 0.04f);
+            TransformUtils.PushObjLength(list, 0.5f);
+            Shoot(list);
+            
+        }
 
-            yield return new WaitForSeconds(0.1f);
-            var list = CircleDanmu.CreateCircleDanmu(tem, this.transform, 13, 0.02f);
+    }
+    IEnumerator danmu1()
+    {
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(0.1f);
+            var list = CircleDanmu.CreateCircleDanmu(tem, this.transform, 36, 0.02f);
+
+            TransformUtils.PushObjLength(list, 0.5f);
             Shoot(list);
 
         }
 
     }
-    
+
+
     private void Start()
     {
+        
         tem = Resources.Load("Bullet/pinkMi") as GameObject;
         StartCoroutine(danmu());
 
@@ -30,6 +46,8 @@ public class Boyuli : BulletShooterBase
 
     private void Update()
     {
-        RotateLoop(1.5f);
+
+            RotateLoop(1.5f);
+        
     }
 }

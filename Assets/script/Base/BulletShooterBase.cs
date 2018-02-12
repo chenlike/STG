@@ -9,13 +9,17 @@ public class BulletShooterBase : EnemyBase
     {
         foreach (GameObject obj in list)
         {
-            yield return new WaitForSeconds(delayTime);
+            if(delayTime!=0)
+                yield return new WaitForSeconds(delayTime);
             obj.SetActive(true);
         }
     }
     protected void Shoot(List<GameObject> list)
     {
-        StartCoroutine(DelayShoot(list,0f));
+        foreach (GameObject obj in list)
+        {
+            obj.SetActive(true);
+        }
     }
     /// <summary>
     /// 每个弹幕等待时间后发射
@@ -25,6 +29,7 @@ public class BulletShooterBase : EnemyBase
     protected void Shoot(List<GameObject> list, float delayTime)
     {
         StartCoroutine(DelayShoot(list, delayTime));
+        
     }
 
 

@@ -5,14 +5,14 @@ using UnityEngine.UI;
 using Utils;
 public class Player : MonoBehaviour {
 
-    float KEYBOARD_SPEED = 0.07f;
-    float KEYBOARD_MOVE_LEN = 0.11f;
+    float KEYBOARD_SPEED = 0.0015f;
+    float KEYBOARD_MOVE_LEN = 0.04f;
 
-	void Start () {
+    void Start () {
 
     }
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate() {
         MoveByKeyBoard();
     }
 
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
     {
 
 
-        /*
+        
          if(other.tag == "EnemyBullet")
          {
              Destroy(other.gameObject);
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
                  Destroy(a);
              }
          }
-         */
+         
 
 
     }
@@ -47,11 +47,11 @@ public class Player : MonoBehaviour {
         Vector3 newPlayerPosition = transform.position;
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            newPlayerPosition.y += KEYBOARD_MOVE_LEN ;
+            newPlayerPosition.y += KEYBOARD_MOVE_LEN;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            newPlayerPosition.y -= KEYBOARD_MOVE_LEN  ;
+            newPlayerPosition.y -= KEYBOARD_MOVE_LEN ;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -61,6 +61,7 @@ public class Player : MonoBehaviour {
         {
             newPlayerPosition.x += KEYBOARD_MOVE_LEN;
         }
+
         if(newPlayerPosition.x< -2.752 || newPlayerPosition.x > 2.752)
         {
             newPlayerPosition.x = transform.position.x;

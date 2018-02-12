@@ -1,15 +1,22 @@
 ﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectPool : MonoBehaviour {
 
+    
     Dictionary<string, Queue<GameObject>> pool = new Dictionary<string, Queue<GameObject>>();
 
-
+    /// <summary>
+    /// 从池中获得obj
+    /// </summary>
+    /// <param name="name">名字</param>
+    /// <returns></returns>
     public GameObject FindGameObject(string name)
     {
-        name += "(Clone)";
+        
         if (!pool.ContainsKey(name))
             return null;
         if (pool[name].Count == 0)
@@ -19,20 +26,29 @@ public class ObjectPool : MonoBehaviour {
         return pool[name].Dequeue();
     }
 
-
-
+    private void ResetObj(GameObject obj)
+    {
+        //初始化
+        obj.SetActive(false);
+        foreach(var sc in obj.GetComponents<BulletBase>())
+        {
+            Destroy(sc);
+        }
+    }
+    /// <summary>
+    /// 增加到池中
+    /// </summary>
+    /// <param name="obj"></param>
     public void AddToPool(GameObject obj)
     {
-        if (pool.ContainsKey(obj.name) == false)
+        string temName = obj.name;
+        if (pool.ContainsKey(temName) == false)
         {
             pool[obj.name] = new Queue<GameObject>();
         }
-        obj.transform.position = new Vector3(0,0,0);
-        obj.transform.rotation = new Quaternion(0, 0, 0, 0);
-
-        obj.SetActive(false);
-        Destroy(obj.GetComponent<BulletBase>());
-        pool[obj.name].Enqueue(obj);
+        ResetObj(obj);
+        //GameObject.Find("Text").GetComponent<Text>().text = pool[temName].Count.ToString();
+        pool[temName].Enqueue(obj);
     }
 
 

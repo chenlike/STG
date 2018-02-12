@@ -25,6 +25,7 @@ public class EnemyBase : MonoBehaviour
     protected StatusEvent updateEvent;
     protected float destroyTime = 0f;
     public float nowAngle = 0f;
+
     /// <summary>
     /// 修改朝向 (瞬时)
     /// </summary>
@@ -36,7 +37,7 @@ public class EnemyBase : MonoBehaviour
     }
     protected void RotateLoop(float speed)
     {
-        this.transform.Rotate(Vector3.forward * speed);
+        this.transform.Rotate(transform.forward * speed,Space.Self);
     }
 
 
@@ -44,23 +45,21 @@ public class EnemyBase : MonoBehaviour
     {
 
 
-        if (startEvent!=null)
-            startEvent(this.gameObject);
+        startEvent?.Invoke(this.gameObject);
     }
     void Update()
     {
-        if (updateEvent != null)
-            updateEvent(this.gameObject);
+        updateEvent?.Invoke(this.gameObject);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(triggerEvent!=null)
-            triggerEvent(collision.gameObject);
+        triggerEvent?.Invoke(collision.gameObject);
         //碰到4个墙壁销毁
-        
+
         if (collision.gameObject.transform.parent != null && collision.gameObject.transform.parent.gameObject.name == "Wall")
         {
 
+            this.gameObject.SetActive(false);
             DanmuUtil.objPool.AddToPool(this.gameObject);
             Destroy(this);
         }

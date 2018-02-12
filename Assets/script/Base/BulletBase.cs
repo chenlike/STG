@@ -3,8 +3,7 @@ using System.Collections;
 using Utils;
 public class BulletBase : EnemyBase
 {
-
-    public string templateName { get; set; }
+    
     public float speed = 0f;
     
     /// <summary>
