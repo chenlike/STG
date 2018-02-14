@@ -62,9 +62,7 @@ public class SceneControl : MonoBehaviour
         enm = Utils.DanmuUtil.InitTemplate(enm, new Vector3(0, 3, 0));
 
 
-        CharacterBase doremiChararcterBase =  enm.AddComponent<CharacterBase>();
-        doremiChararcterBase.spellList.Add();
-
+        
 
 
 
@@ -72,7 +70,7 @@ public class SceneControl : MonoBehaviour
 
 
         play.SetActive(true);
-        enm.SetActive(true);
+        //enm.SetActive(true);
     }
 
     // Update is called once per frame

@@ -23,7 +23,6 @@ public class Boyuli : BulletShooterBase, IBulletShooter
     {
         RotateLoop(1.5f);
     }
-
     IEnumerator danmu()
     {
         while (true)
@@ -36,4 +35,9 @@ public class Boyuli : BulletShooterBase, IBulletShooter
 
     }
 
+    void Start()
+    {
+        PrePare();
+        StartShoot();
+    }
 }
