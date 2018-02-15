@@ -61,7 +61,7 @@ public class Player : MonoBehaviour {
         {
             newPlayerPosition.x += KEYBOARD_MOVE_LEN;
         }
-
+        /*
         if(newPlayerPosition.x< -2.752 || newPlayerPosition.x > 2.752)
         {
             newPlayerPosition.x = transform.position.x;
@@ -69,7 +69,9 @@ public class Player : MonoBehaviour {
         if (newPlayerPosition.y < -4.958 || newPlayerPosition.y > 4.958)
         {
             newPlayerPosition.y = transform.position.y;
-        }
+        }         
+         */
+
 
         if (newPlayerPosition == transform.position) return;
 

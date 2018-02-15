@@ -4,25 +4,25 @@ using Utils;
 public class EnemyBase : MonoBehaviour
 {
 
-    protected delegate void StatusEvent(GameObject necessary);
+    public delegate void StatusEvent(GameObject necessary);
 
 
     /// <summary>
     /// 当将要被销毁的
     /// </summary>
-    protected StatusEvent destroyEvent;
+    public StatusEvent destroyEvent;
     /// <summary>
     /// 当有物体碰撞时
     /// </summary>
-    protected StatusEvent triggerEvent;
+    public StatusEvent triggerEvent;
     /// <summary>
     /// 刚Start时
     /// </summary>
-    protected StatusEvent startEvent;
+    public StatusEvent startEvent;
     /// <summary>
     /// 每一帧调用
     /// </summary>
-    protected StatusEvent updateEvent;
+    public StatusEvent updateEvent;
     protected float destroyTime = 0f;
 
     public float nowAngle = 0f;
@@ -46,8 +46,6 @@ public class EnemyBase : MonoBehaviour
 
     void Start()
     {
-
-
         startEvent?.Invoke(this.gameObject);
     }
     void Update()

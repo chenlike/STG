@@ -26,15 +26,7 @@ public class ObjectPool : MonoBehaviour {
         return pool[name].Dequeue();
     }
 
-    private void ResetObj(GameObject obj)
-    {
-        //初始化
-        obj.SetActive(false);
-        foreach(var sc in obj.GetComponents<BulletBase>())
-        {
-            Destroy(sc);
-        }
-    }
+
     /// <summary>
     /// 增加到池中
     /// </summary>
@@ -46,7 +38,11 @@ public class ObjectPool : MonoBehaviour {
         {
             pool[obj.name] = new Queue<GameObject>();
         }
-        ResetObj(obj);
+        obj.SetActive(false);
+        foreach (var sc in obj.GetComponents<BulletBase>())
+        {
+            Destroy(sc);
+        }
         //GameObject.Find("Text").GetComponent<Text>().text = pool[temName].Count.ToString();
         pool[temName].Enqueue(obj);
     }
