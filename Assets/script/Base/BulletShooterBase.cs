@@ -17,7 +17,7 @@ public class BulletShooterBase : EnemyBase
             obj.SetActive(true);
         }
     }
-    protected void Shoot(List<GameObject> list)
+    public void Shoot(List<GameObject> list)
     {
         foreach (GameObject obj in list)
         {
@@ -29,7 +29,7 @@ public class BulletShooterBase : EnemyBase
     /// </summary>
     /// <param name="list"></param>
     /// <param name="delayTime"></param>
-    protected void Shoot(List<GameObject> list, float delayTime)
+    public void Shoot(List<GameObject> list, float delayTime)
     {
         StartCoroutine(DelayShoot(list, delayTime));
     }

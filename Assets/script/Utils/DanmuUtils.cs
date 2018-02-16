@@ -8,6 +8,9 @@ namespace Utils
     static class DanmuUtil
     {
         public static ObjectPool objPool = GameObject.Find("GameObjectPool").GetComponent<ObjectPool>();
+        public static SceneControl sceneControl = GameObject.Find("Main Camera").GetComponent<SceneControl>();
+
+
         /// <summary>
         /// 按Transform实例化
         /// </summary>

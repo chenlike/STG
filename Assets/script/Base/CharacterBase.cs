@@ -15,9 +15,7 @@ class CharacterBase: MonoBehaviour
 
     private void Start()
     {
-        spellList.ForEach(spellCard => {
-            spellCard.Start();
-        });
+
     }
     
 

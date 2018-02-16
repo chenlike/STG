@@ -13,7 +13,7 @@ public class BulletBase : EnemyBase
     {
         transform.position += transform.up * speed;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         MoveForward();
     }

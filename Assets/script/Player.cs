@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using Utils;
 public class Player : MonoBehaviour {
 
-    float KEYBOARD_SPEED = 0.0015f;
-    float KEYBOARD_MOVE_LEN = 0.04f;
+    float KEYBOARD_SPEED = 0.0005f;
+    float KEYBOARD_MOVE_LEN = 0.06f;
 
     void Start () {
 
@@ -19,23 +19,17 @@ public class Player : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
-
-        
          if(other.tag == "EnemyBullet")
          {
              Destroy(other.gameObject);
              this.transform.position = new Vector3(0, -4, 0);
              var objs =GameObject.FindGameObjectsWithTag("EnemyBullet");
              GameObject.Find("Main Camera").GetComponent<SceneControl>().now = 0;
-             foreach(GameObject a in objs)
+             foreach(GameObject obj in objs)
              {
-                 Destroy(a);
+                obj.GetComponent<BulletBase>().AddToPool();
              }
          }
-         
-
-
     }
 
     /// <summary>

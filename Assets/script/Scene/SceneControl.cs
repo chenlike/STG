@@ -33,7 +33,6 @@ public class SceneControl : MonoBehaviour
             SetNum();
         }
     }
-
     public GameObject GetResByName(string name)
     {
         return resources[name];
@@ -48,6 +47,9 @@ public class SceneControl : MonoBehaviour
         }
     }
 
+
+    
+
     // Use this for initialization
     void Start()
     {
@@ -57,10 +59,12 @@ public class SceneControl : MonoBehaviour
         max = PlayerPrefs.GetInt("max");
         StartCoroutine(ttime());
         GameObject play = Resources.Load("character/player") as GameObject;
-        GameObject enm = Resources.Load("character/aboluo123") as GameObject;
-        play = Utils.DanmuUtil.InitTemplate(play, new Vector3(0, -3, 0));
-        enm = Utils.DanmuUtil.InitTemplate(enm, new Vector3(0, 3, 0));
 
+        play = Utils.DanmuUtil.InitTemplate(play, new Vector3(0, -3, 0));
+
+        SpellCardTest a = new SpellCardTest();
+        a.Prepare();
+        a.Spell();
 
         
 

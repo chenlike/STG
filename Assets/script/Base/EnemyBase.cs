@@ -52,6 +52,12 @@ public class EnemyBase : MonoBehaviour
     {
         updateEvent?.Invoke(this.gameObject);
     }
+    public void AddToPool()
+    {
+        this.gameObject.SetActive(false);
+        DanmuUtil.objPool.AddToPool(this.gameObject);
+        Destroy(this);
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         triggerEvent?.Invoke(collision.gameObject);
@@ -59,9 +65,7 @@ public class EnemyBase : MonoBehaviour
 
         if (collision.gameObject.transform.parent != null && collision.gameObject.transform.parent.gameObject.name == "Wall")
         {
-            this.gameObject.SetActive(false);
-            DanmuUtil.objPool.AddToPool(this.gameObject);
-            Destroy(this);
+            AddToPool();
         }
     }
 
