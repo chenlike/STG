@@ -13,16 +13,19 @@ public class BulletShooterBase : EnemyBase
         foreach (GameObject obj in list)
         {
             if(delayTime!=0)
-                yield return new WaitForSeconds(delayTime);
+                yield return new WaitForSecondsRealtime(delayTime);
             obj.SetActive(true);
         }
     }
     public void Shoot(List<GameObject> list)
     {
-        foreach (GameObject obj in list)
+        for(int i = 0; i < list.Count; i++)
         {
-            obj.SetActive(true);
+            list[i].SetActive(true);
         }
+
+
+
     }
     /// <summary>
     /// 每个弹幕等待时间后发射

@@ -30,14 +30,14 @@ namespace Utils
         /// <param name="target">目标</param>
         /// <param name="speed">速度</param>
         /// <returns></returns>
-        public static List<GameObject> CreateFocusPointDanmu(GameObject template, Vector3 nowPosition, Vector3 target, float speed)
+        public static GameObject CreateFocusPointDanmu(GameObject template, Vector3 nowPosition, Vector3 target, float speed)
         {
-            List<GameObject> danmuList = new List<GameObject>();
+            
             GameObject obj = SingleFocusDanmu(template, nowPosition, target, speed);
-            danmuList.Add(obj);
-            return danmuList;
+
+            return obj;
         }
-        public static List<GameObject> CreateFocusGameObjectDanmu(GameObject template, Vector3 nowPosition, GameObject target, float speed)
+        public static GameObject CreateFocusGameObjectDanmu(GameObject template, Vector3 nowPosition, GameObject target, float speed)
         {
             return CreateFocusPointDanmu(template, nowPosition, target.transform.position, speed);
         }

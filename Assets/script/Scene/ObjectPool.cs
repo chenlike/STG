@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class ObjectPool : MonoBehaviour {
 
     
-    Dictionary<string, Queue<GameObject>> pool = new Dictionary<string, Queue<GameObject>>();
+    Dictionary<string, ConcurrentQueue<GameObject>> pool = new Dictionary<string, ConcurrentQueue<GameObject>>();
+
+
 
     /// <summary>
     /// 从池中获得obj
@@ -16,14 +18,15 @@ public class ObjectPool : MonoBehaviour {
     /// <returns></returns>
     public GameObject FindGameObject(string name)
     {
-        
         if (!pool.ContainsKey(name))
             return null;
         if (pool[name].Count == 0)
         {
             return null;
         }
-        return pool[name].Dequeue();
+        GameObject tryOut;
+        pool[name].TryDequeue(out tryOut);
+        return tryOut;
     }
 
 
@@ -36,14 +39,12 @@ public class ObjectPool : MonoBehaviour {
         string temName = obj.name;
         if (pool.ContainsKey(temName) == false)
         {
-            pool[obj.name] = new Queue<GameObject>();
+            pool[obj.name] = new ConcurrentQueue<GameObject>();
         }
         obj.SetActive(false);
-        foreach (var sc in obj.GetComponents<BulletBase>())
-        {
-            Destroy(sc);
-        }
-        //GameObject.Find("Text").GetComponent<Text>().text = pool[temName].Count.ToString();
+        BulletBase blt = obj.GetComponent<BulletBase>();
+        if (blt!=null)
+            blt.ResetScript();
         pool[temName].Enqueue(obj);
     }
 

@@ -75,6 +75,10 @@ namespace Utils
             }
             return danmuList;
         }
+        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float speed)
+        {
+            return CreateArcDanmu(bulletTemplate, parent, fromAngle, endAngle, num, speed, false);
+        }
 
 
         /// <summary>

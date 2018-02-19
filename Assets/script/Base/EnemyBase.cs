@@ -26,9 +26,6 @@ public class EnemyBase : MonoBehaviour
     protected float destroyTime = 0f;
 
     public float nowAngle = 0f;
-    public Vector3 position;
-
-
     /// <summary>
     /// 修改朝向 (瞬时)
     /// </summary>
@@ -38,17 +35,28 @@ public class EnemyBase : MonoBehaviour
         transform.eulerAngles = new Vector3(0, 0, angle);// = new Quaternion(0, 0, angle,0);
         nowAngle = angle;
     }
+    public void ResetScript()
+    {
+        destroyEvent = null;
+        triggerEvent = null;
+        startEvent = null;
+        updateEvent = null;
+        nowAngle = 0f;
+        destroyTime = 0f;
+
+         
+    }
     protected void RotateLoop(float speed)
     {
+        
+        
         this.transform.Rotate(transform.forward * speed,Space.Self);
     }
-
-
     void Start()
     {
         startEvent?.Invoke(this.gameObject);
     }
-    void Update()
+    void FixedUpdate()
     {
         updateEvent?.Invoke(this.gameObject);
     }
@@ -56,7 +64,6 @@ public class EnemyBase : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         DanmuUtil.objPool.AddToPool(this.gameObject);
-        Destroy(this);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {

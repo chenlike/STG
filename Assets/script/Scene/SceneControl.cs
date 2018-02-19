@@ -8,6 +8,7 @@ public class SceneControl : MonoBehaviour
 {
 
     Dictionary<string, GameObject> resources = new Dictionary<string, GameObject>();
+
     int max = 0;
     public int now = 0;
 
@@ -23,7 +24,7 @@ public class SceneControl : MonoBehaviour
         SetNum();
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             now += 1;
             if (now > max)
             {
@@ -33,10 +34,22 @@ public class SceneControl : MonoBehaviour
             SetNum();
         }
     }
+
+
+
+    /// <summary>
+    /// 通过名字返回模板
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public GameObject GetResByName(string name)
     {
         return resources[name];
     }
+    
+    /// <summary>
+    /// 加载资源
+    /// </summary>
     void LoadAllResources()
     {
         var list = Resources.LoadAll("bullet");
@@ -48,7 +61,8 @@ public class SceneControl : MonoBehaviour
     }
 
 
-    
+
+
 
     // Use this for initialization
     void Start()
@@ -56,30 +70,18 @@ public class SceneControl : MonoBehaviour
         LoadAllResources();
 
 
-        max = PlayerPrefs.GetInt("max");
-        StartCoroutine(ttime());
         GameObject play = Resources.Load("character/player") as GameObject;
 
         play = Utils.DanmuUtil.InitTemplate(play, new Vector3(0, -3, 0));
 
-        SpellCardTest a = new SpellCardTest();
+        SpellCardDemo a = new SpellCardDemo();
         a.Prepare();
         a.Spell();
 
         
 
 
-
-
-
-
         play.SetActive(true);
-        //enm.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 

@@ -20,6 +20,7 @@ namespace Utils
         public static GameObject InitTemplate(GameObject template, Transform ts)
         {
             var getRes = objPool.FindGameObject(template.name);
+
             if (getRes == null)
             {
                 GameObject obj =    Object.Instantiate(template, ts) as GameObject;
@@ -44,6 +45,7 @@ namespace Utils
         {
 
             var getRes = objPool.FindGameObject(template.name);
+
             if (getRes == null)
             {
                 GameObject obj = Object.Instantiate(template, position, Quaternion.identity);

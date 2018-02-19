@@ -42,6 +42,9 @@ namespace Utils
         }
 
 
-
+        public static GameObject CreateSingleDanmu(GameObject bulletTemplate, Transform ts, float speed)
+        {
+            return CreateSingleDanmu(bulletTemplate, ts, 0, speed, false);
+        }
     }
 }

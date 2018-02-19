@@ -17,10 +17,11 @@ public class SpellCard
     {
         GameObject empty = new GameObject();
         empty.AddComponent<BulletShooterBase>();
-        empty =  Object.Instantiate(empty);
+        empty.transform.rotation = Quaternion.identity; 
         empty.SetActive(false);
         return empty;
     }
+
     /// <summary>
     ///  按位置 创建一个空的BulletShooter Gameobject
     /// </summary>
@@ -28,13 +29,12 @@ public class SpellCard
     /// <returns>false Active的GameObject</returns>
     protected GameObject CreateEmptyBulletShooter(Vector3 pos)
     {
-        GameObject empty = new GameObject();
-        empty.AddComponent<BulletShooterBase>();
-        empty = Object.Instantiate(empty);
+        GameObject empty = CreateEmptyBulletShooter();
         empty.transform.position = pos;
-        empty.SetActive(false);
         return empty;
     }
+
+
 
     /// <summary>
     /// 启动BulletShooter

@@ -4588,7 +4588,7 @@ public class iTween : MonoBehaviour {
 
 	IEnumerator TweenDelay() {
 		delayStarted = Time.time;
-		yield return new WaitForSeconds( delay );
+		yield return new WaitForSecondsRealtime( delay );
 		if ( wasPaused ) {
 			wasPaused = false;
 			TweenStart();
@@ -4619,7 +4619,7 @@ public class iTween : MonoBehaviour {
 	IEnumerator TweenRestart() {
 		if ( delay > 0 ) {
 			delayStarted = Time.time;
-			yield return new WaitForSeconds( delay );
+			yield return new WaitForSecondsRealtime( delay );
 		}
 		loop = true;
 		TweenStart();
