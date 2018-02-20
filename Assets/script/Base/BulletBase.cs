@@ -6,6 +6,8 @@ public class BulletBase : EnemyBase
     
     public float speed = 0f;
     
+
+
     /// <summary>
     /// 向前移动
     /// </summary>

@@ -35,9 +35,9 @@ namespace Utils
             if (obj.GetComponent<BulletBase>() == null)
                 obj.AddComponent<BulletBase>();
             BulletBase bul = obj.GetComponent<BulletBase>();
-
+            obj.transform.position = pos;
             bul.speed = speed;
-            //TransformUtils.RotateFromZero(obj, 0f);
+            
             return obj;
         }
 

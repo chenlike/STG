@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Utils;
+using System.Collections.Generic;
+
 public class EnemyBase : MonoBehaviour
 {
+    public Dictionary<string, string> message = new Dictionary<string, string>();
 
     public delegate void StatusEvent(GameObject necessary);
-
+    public delegate void touchEvent(GameObject obj,GameObject touch);
 
     /// <summary>
     /// 当将要被销毁的
@@ -14,7 +17,7 @@ public class EnemyBase : MonoBehaviour
     /// <summary>
     /// 当有物体碰撞时
     /// </summary>
-    public StatusEvent triggerEvent;
+    public touchEvent triggerEvent;
     /// <summary>
     /// 刚Start时
     /// </summary>
@@ -67,7 +70,7 @@ public class EnemyBase : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        triggerEvent?.Invoke(collision.gameObject);
+        triggerEvent?.Invoke(this.gameObject,collision.gameObject);
         //碰到4个墙壁销毁
 
         if (collision.gameObject.transform.parent != null && collision.gameObject.transform.parent.gameObject.name == "Wall")

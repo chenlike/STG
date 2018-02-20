@@ -5,13 +5,14 @@ using UnityEngine.UI;
 using Utils;
 public class Player : MonoBehaviour {
 
-    float KEYBOARD_SPEED = 0.0005f;
-    float KEYBOARD_MOVE_LEN = 0.06f;
+    float KEYBOARD_SPEED = 0.002f;
+    float KEYBOARD_MOVE_LEN = 0.12f;
 
     void Start () {
 
     }
     // Update is called once per frame
+    float ti = 0;
     void FixedUpdate() {
         MoveByKeyBoard();
     }
@@ -39,6 +40,13 @@ public class Player : MonoBehaviour {
     {
 
         Vector3 newPlayerPosition = transform.position;
+        KEYBOARD_MOVE_LEN = 0.12f;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            KEYBOARD_MOVE_LEN = 0.04f;
+        }
+
+        
         if (Input.GetKey(KeyCode.UpArrow))
         {
             newPlayerPosition.y += KEYBOARD_MOVE_LEN;
@@ -55,7 +63,7 @@ public class Player : MonoBehaviour {
         {
             newPlayerPosition.x += KEYBOARD_MOVE_LEN;
         }
-        /*
+        
         if(newPlayerPosition.x< -2.752 || newPlayerPosition.x > 2.752)
         {
             newPlayerPosition.x = transform.position.x;
@@ -64,12 +72,12 @@ public class Player : MonoBehaviour {
         {
             newPlayerPosition.y = transform.position.y;
         }         
-         */
+         
 
 
         if (newPlayerPosition == transform.position) return;
-
-        iTween.MoveTo(this.gameObject, newPlayerPosition, KEYBOARD_SPEED);
+        transform.position = newPlayerPosition;
+        //iTween.MoveTo(this.gameObject, newPlayerPosition, KEYBOARD_SPEED);
         
     }
 

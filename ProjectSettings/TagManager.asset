@@ -9,6 +9,8 @@ TagManager:
   - down
   - left
   - right
+  - bullet1
+  - bullet0
   layers:
   - Default
   - TransparentFX

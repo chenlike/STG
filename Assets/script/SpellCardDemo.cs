@@ -10,6 +10,8 @@ public class SpellCardDemo : SpellCard, ISpellCard
 
     GameObject circleShooter;
     GameObject carShooter;
+
+
     private void InitRes()
     {
         var res = Utils.DanmuUtil.sceneControl;
@@ -35,9 +37,6 @@ public class SpellCardDemo : SpellCard, ISpellCard
             bsb.Shoot(list);
         }
     }
-
-
-
     GameObject CreateList(GameObject obj)
     {
         GameObject a = new GameObject();
@@ -93,9 +92,6 @@ public class SpellCardDemo : SpellCard, ISpellCard
 
         return a;
     }
-
-
-
     IEnumerator CircleCar(GameObject obj)
     {
         
@@ -132,6 +128,7 @@ public class SpellCardDemo : SpellCard, ISpellCard
     public void Prepare()
     {
         InitRes();
+
         circleShooter = CreateEmptyBulletShooter(new Vector3(0,1,0));
         circleShooter.GetComponent<BulletShooterBase>().startEvent += SpellCircle;
         carShooter = CreateEmptyBulletShooter(new Vector3(0, 1, 0));
