@@ -1,14 +1,32 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class SpellCardBase {
+
+    /// <summary>
+    /// 符卡的提前准备工作
+    /// </summary>
+    public abstract void Prepare();
+    /// <summary>
+    /// 开始施放符卡
+    /// </summary>
+    public abstract void Spell();
+    /// <summary>
+    /// 停止（结束）符卡
+    /// </summary>
+    public abstract void StopSpell();
 
 
-public class SpellCard
-{
     /// <summary>
     /// 符卡名
     /// </summary>
     public string name { get; set; }
+    /// <summary>
+    /// 符卡持续时间
+    /// </summary>
+    public float spellKeepTime { get; set; }
+    public float beforeSpellTime { get; set; }
     /// <summary>
     /// 创建一个空的BulletShooter Gameobject
     /// </summary>
@@ -16,11 +34,14 @@ public class SpellCard
     protected GameObject CreateEmptyBulletShooter()
     {
         GameObject empty = new GameObject();
+        empty.tag = "EnemyBullet";
         empty.AddComponent<BulletShooterBase>();
-        empty.transform.rotation = Quaternion.identity; 
+        empty.transform.rotation = Quaternion.identity;
         empty.SetActive(false);
         return empty;
     }
+
+
 
     /// <summary>
     ///  按位置 创建一个空的BulletShooter Gameobject
@@ -34,8 +55,6 @@ public class SpellCard
         return empty;
     }
 
-
-
     /// <summary>
     /// 启动BulletShooter
     /// </summary>
@@ -47,7 +66,6 @@ public class SpellCard
             obj.SetActive(true);
         });
     }
-
 
 
 

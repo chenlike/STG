@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class SpellCardDemo1 : SpellCard, ISpellCard
+/// <summary>
+/// 妖怪测谎仪
+/// </summary>
+public class SpellCardDemo1 : SpellCardBase
 {
+
     GameObject[] bullet = new GameObject[2];
+    //弹幕发射器
     GameObject shooter;
     /// <summary>
     /// 加载资源
@@ -44,7 +48,7 @@ public class SpellCardDemo1 : SpellCard, ISpellCard
         while (true)
         {
             Vector3 pPos = player.transform.position;
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(0.05f);
             //计算出player与圆心的距离得出向量
             float length = Mathf.Sqrt(pPos.x * pPos.x + pPos.y * pPos.y);
             Vector3 pos = new Vector3(0, length, 0);
@@ -78,7 +82,7 @@ public class SpellCardDemo1 : SpellCard, ISpellCard
     /// <param name="obj"></param>
     void RotateChy(GameObject obj)
     {
-        obj.transform.Rotate(Vector3.forward * 0.5f);
+        obj.transform.Rotate(Vector3.forward * 1f);
     }
     /// <summary>
     /// 判断是否碰撞到之前创造的bullet
@@ -96,20 +100,32 @@ public class SpellCardDemo1 : SpellCard, ISpellCard
     }
 
 
-
-    public void Prepare()
+    GameObject chyClone;
+    public override void Prepare()
     {
         InitRes();
         shooter = CreateEmptyBulletShooter();
         shooter.GetComponent<BulletShooterBase>().startEvent += StartShoot;
-        GameObject chy = GameObject.Find("cehuangyi") as GameObject;
-        EnemyBase chyEmy = chy.AddComponent<EnemyBase>();
+        GameObject chy = Utils.DanmuUtil.sceneControl.GetResByName("cehuangyi");
+        chyClone =  Utils.SingleDanmu.CreateSingleDanmu(chy, new Vector3(0, 0, 0), 0f);
+        EnemyBase chyEmy = chyClone.AddComponent<EnemyBase>();
         chyEmy.updateEvent += RotateChy;
     }
 
-    public void Spell()
+    public override void Spell()
     {
         shooter.SetActive(true);
+        chyClone.SetActive(true);
+    }
+    public override void StopSpell()
+    {
+        Object.Destroy(shooter);
+        Object.Destroy(GameObject.Find("cehuangyi") as GameObject);
+        foreach(var i in GameObject.FindGameObjectsWithTag("EnemyBullet"))
+        {
+            Object.Destroy(i);
+        }
+
     }
 
 

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellCardDemo : SpellCard, ISpellCard
+public class SpellCardDemo : SpellCardBase
 {
-
+    //红玉
     GameObject redBall;
+    //各种颜色的arrow
     GameObject[] arrows = new GameObject[9];
 
+    //负责发射红玉的shooter
     GameObject circleShooter;
+    //负责发射Arrows的shooter
     GameObject carShooter;
-
-
+    //加载资源
     private void InitRes()
     {
         var res = Utils.DanmuUtil.sceneControl;
@@ -26,7 +28,11 @@ public class SpellCardDemo : SpellCard, ISpellCard
         arrows[7] = res.GetResByName("redArrowLow");
         arrows[8] = res.GetResByName("redArrow");
     }
-
+    /// <summary>
+    /// 发射玉的循环
+    /// </summary>
+    /// <param name="obj">shooter</param>
+    /// <returns></returns>
     IEnumerator CircleLoop(GameObject obj)
     {
         BulletShooterBase bsb = obj.GetComponent<BulletShooterBase>();
@@ -37,6 +43,11 @@ public class SpellCardDemo : SpellCard, ISpellCard
             bsb.Shoot(list);
         }
     }
+    /// <summary>
+    /// 创造出Car 
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns>一个单独的GameObejct</returns>
     GameObject CreateList(GameObject obj)
     {
         GameObject a = new GameObject();
@@ -84,7 +95,8 @@ public class SpellCardDemo : SpellCard, ISpellCard
             arrow.GetComponent<BulletBase>().ChangeFace(0f);
         });
         a.transform.eulerAngles = angle;
-        
+        a.tag = "EnemyBullet";
+        a.name = "ArrowCar";
         list.ForEach(arrow =>
         {
             arrow.SetActive(true);
@@ -92,6 +104,11 @@ public class SpellCardDemo : SpellCard, ISpellCard
 
         return a;
     }
+    /// <summary>
+    /// 发射car的循环
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
     IEnumerator CircleCar(GameObject obj)
     {
         
@@ -112,7 +129,10 @@ public class SpellCardDemo : SpellCard, ISpellCard
             
         }
     }
-
+    /// <summary>
+    /// 启动
+    /// </summary>
+    /// <param name="obj"></param>
     private void SpellCircle(GameObject obj)
     {
         BulletShooterBase bsb =  obj.GetComponent<BulletShooterBase>();
@@ -125,22 +145,28 @@ public class SpellCardDemo : SpellCard, ISpellCard
     }
 
 
-    public void Prepare()
+    public override void Prepare()
     {
+        spellKeepTime = 30f;
         InitRes();
-
         circleShooter = CreateEmptyBulletShooter(new Vector3(0,1,0));
         circleShooter.GetComponent<BulletShooterBase>().startEvent += SpellCircle;
         carShooter = CreateEmptyBulletShooter(new Vector3(0, 1, 0));
         carShooter.GetComponent<BulletShooterBase>().startEvent += SpellCar;
     }
 
-    public void Spell()
+    public override void Spell()
     {
         circleShooter.SetActive(true);
         carShooter.SetActive(true);
     }
 
-
+    public override void StopSpell()
+    {
+        foreach (var i in GameObject.FindGameObjectsWithTag("EnemyBullet"))
+        {
+            Object.Destroy(i);
+        }
+    }
 
 }

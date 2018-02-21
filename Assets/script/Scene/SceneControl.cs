@@ -8,12 +8,6 @@ public class SceneControl : MonoBehaviour
 {
 
     Dictionary<string, GameObject> resources = new Dictionary<string, GameObject>();
-
-    int max = 0;
-    public int now = 0;
-
-
-
     /// <summary>
     /// 通过名字返回模板
     /// </summary>
@@ -23,37 +17,45 @@ public class SceneControl : MonoBehaviour
     {
         return resources[name];
     }
-    
     /// <summary>
     /// 加载资源
     /// </summary>
     void LoadAllResources()
     {
-        var list = Resources.LoadAll("bullet");
-        foreach (var i in list)
+        var bullet = Resources.LoadAll("bullet");
+        var character = Resources.LoadAll("character");
+        var other = Resources.LoadAll("other");
+        foreach (var i in bullet)
         {
             GameObject t = (GameObject)i;
             resources[t.name] = t;
         }
+        foreach (var i in character)
+        {
+            GameObject t = (GameObject)i;
+            resources[t.name] = t;
+        }
+        foreach (var i in other)
+        {
+            GameObject t = (GameObject)i;
+            resources[t.name] = t;
+        }
+
+
+
+
+
     }
-
-
-
-
-
 
     void Start()
     {
         LoadAllResources();
         GameObject play = Resources.Load("character/player") as GameObject;
         play = Utils.DanmuUtil.InitTemplate(play, new Vector3(0, -3f, 0));
-        SpellCardDemo1 a = new SpellCardDemo1();
-        a.Prepare();
-        a.Spell();
+
         play.SetActive(true);
-
+        GameObject.Find("koishi").AddComponent<Koishi>();
     }
-
 
 
 }

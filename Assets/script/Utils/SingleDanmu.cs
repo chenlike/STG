@@ -25,7 +25,7 @@ namespace Utils
             BulletBase bul = obj.GetComponent<BulletBase>();
 
             bul.speed = speed;
-            TransformUtils.RotateFromZero(obj, angle);
+            bul.ChangeFace(angle);
             return obj;
         }
 

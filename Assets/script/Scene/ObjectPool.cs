@@ -42,9 +42,11 @@ public class ObjectPool : MonoBehaviour {
             pool[obj.name] = new ConcurrentQueue<GameObject>();
         }
         obj.SetActive(false);
+        obj.transform.parent = this.transform;
         BulletBase blt = obj.GetComponent<BulletBase>();
         if (blt!=null)
             blt.ResetScript();
+
         pool[temName].Enqueue(obj);
     }
 

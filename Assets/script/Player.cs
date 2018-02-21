@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
              Destroy(other.gameObject);
              this.transform.position = new Vector3(0, -4, 0);
              var objs =GameObject.FindGameObjectsWithTag("EnemyBullet");
-             GameObject.Find("Main Camera").GetComponent<SceneControl>().now = 0;
+             
              foreach(GameObject obj in objs)
              {
                 obj.GetComponent<BulletBase>().AddToPool();

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50270622666492828}
   m_Layer: 0
   m_Name: pl01b_0 (3)
-  m_TagString: Untagged
+  m_TagString: bullet0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 50797981646481716}
   m_Layer: 0
   m_Name: pl01b_4 (2)
-  m_TagString: Untagged
+  m_TagString: bullet1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 50810314374973016}
   m_Layer: 0
   m_Name: pl01b_4 (1)
-  m_TagString: Untagged
+  m_TagString: bullet1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 50991911308031304}
   m_Layer: 0
   m_Name: pl01b_0 (4)
-  m_TagString: Untagged
+  m_TagString: bullet0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 50569343295507902}
   m_Layer: 0
   m_Name: pl01b_4 (3)
-  m_TagString: Untagged
+  m_TagString: bullet1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 50415258774652976}
   m_Layer: 0
   m_Name: pl01b_0 (5)
-  m_TagString: Untagged
+  m_TagString: bullet0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 50151838805938094}
   m_Layer: 0
   m_Name: pl01b_4
-  m_TagString: Untagged
+  m_TagString: bullet1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 50629549851430598}
   m_Layer: 0
   m_Name: pl01b_0 (2)
-  m_TagString: Untagged
+  m_TagString: bullet0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1056,7 +1056,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 9af1deb3b6bd6ed43aeb9e1591d2af81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
