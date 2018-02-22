@@ -1,17 +1,13 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
-public class CharacterBase: MonoBehaviour
+public class Character : MonoBehaviour
 {
     //TODO 
     //CharacterAnimation Control
 
-    public List<SpellCardBase> spellList = new List<SpellCardBase>();
+    public List<SpellCard> spellList = new List<SpellCard>();
 
     /// <summary>
     /// 当前符卡位置
@@ -25,11 +21,14 @@ public class CharacterBase: MonoBehaviour
     /// <returns></returns>
     IEnumerator StartSpellCard(int index)
     {
-        nowSpellCardIndex = index;
-        if (index >=spellList.Count)
+        //如果大于list长度break
+        if (index >= spellList.Count)
         {
             yield break;
         }
+        //更新当前index
+        nowSpellCardIndex = index;
+
 
         spellList[index].Prepare();
         yield return new WaitForSecondsRealtime(spellList[index].beforeSpellTime);
@@ -37,7 +36,7 @@ public class CharacterBase: MonoBehaviour
 
         yield return new WaitForSecondsRealtime(spellList[index].spellKeepTime);
         spellList[index].StopSpell();
-        yield return StartCoroutine(StartSpellCard(index+1));
+        yield return StartCoroutine(StartSpellCard(index + 1));
     }
 
     /// <summary>
@@ -62,10 +61,4 @@ public class CharacterBase: MonoBehaviour
     }
 
 
-
-
-    
-
-
 }
-

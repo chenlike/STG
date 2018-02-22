@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using Utils;
 
-namespace Utils
+namespace Danmu
 {
 
     /// <summary>
@@ -24,10 +25,10 @@ namespace Utils
         /// <param name="fromAngle">从那个角度开始</param>
         /// <param name="endAngle">到哪个角度结束</param>
         /// <param name="num">平均分多少个</param>
-        /// <param name="speed">速度</param>
+        /// <param name="flySpeed">速度</param>
         /// <param name="connectWithParent">是否与父断开</param>
         /// <returns></returns>
-        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float speed, bool connectWithParent)
+        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float flySpeed, bool connectWithParent)
         {
             List<GameObject> danmuList = new List<GameObject>();
             if (num == 0) return danmuList;
@@ -38,15 +39,16 @@ namespace Utils
             {
 
 
-                GameObject bullet = DanmuUtil.InitTemplate(bulletTemplate, parent);
+                GameObject bullet = DanmuUtils.InitTemplate(bulletTemplate, parent);
                 bullet.transform.position = parent.position;
-                if (bullet.GetComponent<BulletBase>() == null)
-                    bullet.AddComponent<BulletBase>();
-
+                Bullet script = bullet.GetComponent<Bullet>();
+                if (script == null)
+                    script = bullet.AddComponent<Bullet>();
+                script.SetDefault();
                 //parent.rotation.z范围是 -1<z<1  所以*=100
                 //TransformUtils.RotateFromZero(bullet, angle + parent.rotation.z * 100);
-                bullet.GetComponent<BulletBase>().ChangeFace(angle + parent.rotation.z * 100);
-                bullet.GetComponent<BulletBase>().speed = speed;
+                DanmuUtils.ChangeFaceAngle(bullet,angle + parent.rotation.z * 100);
+                bullet.GetComponent<Bullet>().flySpeed = flySpeed;
 
                 if (!connectWithParent)
                     bullet.transform.parent = null;
@@ -55,7 +57,7 @@ namespace Utils
             }
             return danmuList;
         }
-        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Vector3 pos, float fromAngle, float endAngle, int num, float speed)
+        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Vector3 pos, float fromAngle, float endAngle, int num, float flySpeed)
         {
             List<GameObject> danmuList = new List<GameObject>();
             if (num == 0) return danmuList;
@@ -65,19 +67,21 @@ namespace Utils
             for (; angle <= endAngle; angle += Mathf.Abs(endAngle - fromAngle) / (float)num)
             {
 
-                GameObject bullet = DanmuUtil.InitTemplate(bulletTemplate, pos);
+                GameObject bullet = DanmuUtils.InitTemplate(bulletTemplate, pos);
                 bullet.transform.position = pos;
-                if (bullet.GetComponent<BulletBase>() == null)
-                    bullet.AddComponent<BulletBase>();
-                bullet.GetComponent<BulletBase>().ChangeFace(angle);
-                bullet.GetComponent<BulletBase>().speed = speed;
+                Bullet script = bullet.GetComponent<Bullet>();
+                if (script == null)
+                    script = bullet.AddComponent<Bullet>();
+                script.SetDefault();
+                DanmuUtils.ChangeFaceAngle(bullet,angle);
+                bullet.GetComponent<Bullet>().flySpeed = flySpeed;
                 danmuList.Add(bullet);
             }
             return danmuList;
         }
-        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float speed)
+        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float flySpeed)
         {
-            return CreateArcDanmu(bulletTemplate, parent, fromAngle, endAngle, num, speed, false);
+            return CreateArcDanmu(bulletTemplate, parent, fromAngle, endAngle, num, flySpeed, false);
         }
 
 
@@ -87,10 +91,10 @@ namespace Utils
         /// <param name="bulletTemplate">弹幕原型</param>
         /// <param name="parent">从属的parent</param>
         /// <param name="num">分割的数量360/num</param>
-        /// <param name="speed">移动速度</param>
+        /// <param name="flySpeed">移动速度</param>
         /// <param name="connectWithParent">与parent的链接</param>
         /// <returns></returns>
-        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Transform parent, int num, float speed, bool connectWithParent)
+        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Transform parent, int num, float flySpeed, bool connectWithParent)
         {
             List<GameObject> danmuList = new List<GameObject>();
             if (num == 0) return danmuList;
@@ -99,12 +103,15 @@ namespace Utils
             float angleStep = 360f / num;
             for (; angle < 360f; angle += angleStep)
             {
-                GameObject bullet = DanmuUtil.InitTemplate(bulletTemplate, parent);
-                if (bullet.GetComponent<BulletBase>() == null)
-                    bullet.AddComponent<BulletBase>();
+                GameObject bullet = DanmuUtils.InitTemplate(bulletTemplate, parent);
 
-                bullet.GetComponent<BulletBase>().ChangeFace(angle + parent.rotation.z * 100.0f);
-                bullet.GetComponent<BulletBase>().speed = speed;
+                Bullet script = bullet.GetComponent<Bullet>();
+                if (script == null)
+                    script = bullet.AddComponent<Bullet>();
+                script.SetDefault();
+
+                DanmuUtils.ChangeFaceAngle(bullet,angle + parent.rotation.z * 100.0f);
+                bullet.GetComponent<Bullet>().flySpeed = flySpeed;
                 bullet.transform.position = parent.position;
                 if (!connectWithParent)
                     bullet.transform.parent = null;
@@ -113,11 +120,11 @@ namespace Utils
             }
             return danmuList;
         }
-        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Transform parent, int num, float speed)
+        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Transform parent, int num, float flySpeed)
         {
-            return CreateCircleDanmu(bulletTemplate, parent, num, speed, false);
+            return CreateCircleDanmu(bulletTemplate, parent, num, flySpeed, false);
         }
-        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Vector3 position, int num, float speed)
+        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Vector3 position, int num, float flySpeed)
         {
             List<GameObject> danmuList = new List<GameObject>();
             if (num == 0) return danmuList;
@@ -126,13 +133,14 @@ namespace Utils
             float angleStep = 360f / num;//36/2
             for (; angle < 360f; angle += angleStep)
             {
-                GameObject bullet = DanmuUtil.InitTemplate(bulletTemplate, position);
+                GameObject bullet = DanmuUtils.InitTemplate(bulletTemplate, position);
                 bullet.transform.position = position;
-                if (bullet.GetComponent<BulletBase>() == null)
-                    bullet.AddComponent<BulletBase>();
-                bullet.GetComponent<BulletBase>().ChangeFace(angle);
-                bullet.GetComponent<BulletBase>().speed = speed;
-
+                Bullet script = bullet.GetComponent<Bullet>();
+                if (script == null)
+                    script = bullet.AddComponent<Bullet>();
+                script.SetDefault();
+                DanmuUtils.ChangeFaceAngle(bullet,angle);
+                script.flySpeed = flySpeed;
                 bullet.transform.parent = null;
                 danmuList.Add(bullet);
 

@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Share;
 using System.Collections.Generic;
 
 namespace Utils
 {
-    
-    static class DanmuUtil
+    /// <summary>
+    /// 弹幕工具
+    /// </summary>
+    static class DanmuUtils
     {
-        public static ObjectPool objPool = GameObject.Find("GameObjectPool").GetComponent<ObjectPool>();
-        public static SceneControl sceneControl = GameObject.Find("Main Camera").GetComponent<SceneControl>();
-
 
         /// <summary>
         /// 按Transform实例化
@@ -19,11 +19,11 @@ namespace Utils
         /// <returns></returns>
         public static GameObject InitTemplate(GameObject template, Transform ts)
         {
-            var getRes = objPool.FindGameObject(template.name);
+            var getRes =ObjectPool.FindGameObject(template.name);
 
             if (getRes == null)
             {
-                GameObject obj =    Object.Instantiate(template, ts) as GameObject;
+                GameObject obj = Object.Instantiate(template, ts) as GameObject;
                 obj.SetActive(false);
                 obj.name = template.name;
                 obj.transform.position = ts.position;
@@ -33,7 +33,7 @@ namespace Utils
             {
                 return getRes;
             }
-            
+
         }
         /// <summary>
         /// 按坐标实例化
@@ -44,7 +44,7 @@ namespace Utils
         public static GameObject InitTemplate(GameObject template, Vector3 position)
         {
 
-            var getRes = objPool.FindGameObject(template.name);
+            var getRes = ObjectPool.FindGameObject(template.name);
 
             if (getRes == null)
             {
@@ -82,8 +82,28 @@ namespace Utils
         {
             obj.transform.eulerAngles = FocusToTarget(target, obj.transform.position);
         }
-
+        /// <summary>
+        /// 让弹幕在当前位置和朝向向前移动一段距离
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="len"></param>
+        public static void PushObjLength(GameObject obj, float len)
+        {
+            obj.transform.position += obj.transform.up * len;
+        }
+        public static void PushObjLength(List<GameObject> objList, float len)
+        {
+            objList.ForEach(obj => PushObjLength(obj, len));
+        }
+        /// <summary>
+        /// 转换面朝角度
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="angle"></param>
+        public static void ChangeFaceAngle(GameObject obj,float angle)
+        {
+            obj.transform.eulerAngles = new Vector3(0, 0, angle);
+        }
     }
-
 }
 
