@@ -9,32 +9,33 @@ public class SpellDemo : SpellCard
 
     }
     GameObject t=null;
-    void Test(GameObject obj)
-    {
-        Debug.Log("im " + obj.name);
-    }
+
     IEnumerator a()
     {
 
         GameObject tem;
-        tem = Share.Template.GetTemplate("redBall");
+        tem = PublicObj.Template.GetTemplate("pinkMi");
+        List<GameObject> list = null;
+
         while (true)
         {
-            yield return new WaitForSecondsRealtime(1f);
-            var list = Danmu.CircleDanmu.CreateArcDanmu(tem, new Vector3(0, 0, 0), 30f, 180f, 20, 1f);
-
-
+            yield return new WaitForSeconds(0.051f);
+            list = Danmu.CircleDanmu.CreateCircleDanmu(tem, t.transform, 20,0.6f);
+            Utils.DanmuUtils.PushObjLength(list, 0.5f);
             t.GetComponent<BulletShooter>().Shoot(list);
-
         }
     }
-
+    public void Ro(GameObject obj)
+    {
+        obj.transform.Rotate(Vector3.forward * 2f);
+    }
     public override void Spell()
     {
-        Share.Template.LoadAllResources();
+
+
         t = CreateEmptyBulletShooter();
         t.SetActive(true);
-
+        t.GetComponent<BulletShooter>().updateEvent += Ro;
         StartCoroutine(a());
     }
 

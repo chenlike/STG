@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Share
+namespace PublicObj
 {
     static class Template
     {

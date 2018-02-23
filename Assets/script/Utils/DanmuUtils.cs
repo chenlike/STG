@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Share;
+using PublicObj;
 using System.Collections.Generic;
 
 namespace Utils
@@ -19,18 +19,20 @@ namespace Utils
         /// <returns></returns>
         public static GameObject InitTemplate(GameObject template, Transform ts)
         {
-            var getRes =ObjectPool.FindGameObject(template.name);
+            var getRes =ObjectPool.GetGameObject(template.name);
 
             if (getRes == null)
             {
                 GameObject obj = Object.Instantiate(template, ts) as GameObject;
                 obj.SetActive(false);
                 obj.name = template.name;
+                obj.tag = "EnemyBullet";
                 obj.transform.position = ts.position;
                 return obj;
             }
             else
             {
+                getRes.tag = "EnemyBullet";
                 return getRes;
             }
 
@@ -44,18 +46,20 @@ namespace Utils
         public static GameObject InitTemplate(GameObject template, Vector3 position)
         {
 
-            var getRes = ObjectPool.FindGameObject(template.name);
+            var getRes = ObjectPool.GetGameObject(template.name);
 
             if (getRes == null)
             {
                 GameObject obj = Object.Instantiate(template, position, Quaternion.identity);
                 obj.SetActive(false);
                 obj.name = template.name;
+                obj.tag = "EnemyBullet";
                 obj.transform.position = position;
                 return obj;
             }
             else
             {
+                getRes.tag = "EnemyBullet";
                 getRes.transform.position = position;
                 return getRes;
             }

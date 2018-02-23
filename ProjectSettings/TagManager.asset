@@ -11,6 +11,7 @@ TagManager:
   - right
   - bullet1
   - bullet0
+  - inpool
   layers:
   - Default
   - TransparentFX

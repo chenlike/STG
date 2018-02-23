@@ -23,7 +23,7 @@ namespace Base
         public void DestroyMe()
         {
             SetDisable();
-            Share.ObjectPool.AddToPool(this.gameObject);
+            PublicObj.ObjectPool.AddToPool(this.gameObject);
         }
     }
 

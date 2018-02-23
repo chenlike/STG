@@ -18,7 +18,7 @@ public class Bullet : Enemy,IObjectPool
     /// <param name="obj">自身</param>
     /// <param name="touchObj">触碰者</param>
     public delegate void TouchEvent(GameObject obj, GameObject touchObj);
-    public TouchEvent touchWallEvent;
+    public TouchEvent touchEvent;
 
 
     public void SetDefault()
@@ -26,7 +26,7 @@ public class Bullet : Enemy,IObjectPool
         SetDisable();
         owner = null;
         startEvent = null;
-        touchWallEvent = TouchWall;
+        touchEvent = TouchWall;
         updateEvent = FlyForward;
     }
     /// <summary>
@@ -44,7 +44,7 @@ public class Bullet : Enemy,IObjectPool
     {
         if (isTouchWallDead)
         {
-            touchWallEvent?.Invoke(this.gameObject, collision.gameObject);
+            touchEvent?.Invoke(this.gameObject, collision.gameObject);
         }
     }
 }

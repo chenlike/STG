@@ -6,7 +6,10 @@ public class Control : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Share.Template.LoadAllResources();
+        PublicObj.Template.LoadAllResources();
+
+
+
         GameObject.Find("koishi").AddComponent<Koishi>();
 	}
 	
