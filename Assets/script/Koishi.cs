@@ -7,14 +7,12 @@ public class Koishi : Character
     // Use this for initialization
     void Start()
     {
-        SpellDemo1 a = new SpellDemo1();
-        a.beforeSpellTime = 0f;
-        a.spellKeepTime = 30f;
-        spellList.Add(a);
-        SpellDemo b = new SpellDemo();
-        b.beforeSpellTime = 1f;
-        b.spellKeepTime = 30f;
-        spellList.Add(b);
+        SpellDemo t = new SpellDemo();
+        t.beforeSpellTime = 0f;
+        t.spellKeepTime = 1000f;
+        spellList.Add(t);
+
+
         Spell();
     }
 

@@ -21,14 +21,15 @@ public class SpellDemo : SpellCard
             yield return new WaitForFixedUpdate();
 
 
-            list = Danmu.CircleDanmu.CreateCircleDanmu(tem, t.transform, 15,0.6f);
+            list = Danmu.CircleDanmu.CreateCircleDanmu(tem, t.transform, 5,0.6f);
             t.GetComponent<BulletShooter>().Shoot(list);
         }
     }
-    float speed =4f;
+    float speed = 0f;
     public void Ro(GameObject obj)
     {
-        obj.transform.Rotate(speed*Vector3.forward);
+        speed += 0.1f;
+        obj.transform.Rotate(Vector3.forward*speed);
     }
 
     public override void Spell()

@@ -113,7 +113,7 @@ namespace Danmu
                     script = bullet.AddComponent<Bullet>();
                 script.SetDefault();
 
-                DanmuUtils.ChangeFaceAngle(bullet,angle + parent.rotation.z * 100.0f);
+                DanmuUtils.ChangeFaceAngle(bullet,angle + parent.eulerAngles.z);
                 bullet.GetComponent<Bullet>().flySpeed = flySpeed;
                 bullet.transform.position = parent.position;
                 if (!connectWithParent)
