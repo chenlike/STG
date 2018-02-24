@@ -89,31 +89,34 @@ public class SpellDemo1 : SpellCard
     {
         string idx = obj.GetComponent<Bullet>().message["bullet"];
         string tags = touch.tag.Substring(touch.tag.Length - 1);
+        
+        if (tags == "Player") return;
         if (tags != idx)
         {
             obj.GetComponent<Bullet>().DestroyMe();
         }
     }
-
-
-
     public override void Prepare()
     {
         InitRes();
+
         shooter = CreateEmptyBulletShooter();
         shooter.GetComponent<BulletShooter>().startEvent += StartShoot;
-        GameObject chy = GameObject.Find("cehuangyi") as GameObject;
-        GameObjectBase chyEmy = chy.AddComponent<GameObjectBase>();
-        chyEmy.updateEvent += RotateChy;
+        GameObject chy = Utils.DanmuUtils.InitTemplate(PublicObj.Template.GetTemplate("cehuangyi"), new Vector3(0, 0, 0));
+        chy.SetActive(true);
+        GameObjectBase chyEmy = chy.GetComponent<GameObjectBase>();
+        chyEmy .updateEvent += RotateChy;
     }
 
     public override void Spell()
     {
+        
         shooter.SetActive(true);
     }
 
     public override void StopSpell()
     {
-
+        Object.Destroy(shooter);
+        Object.Destroy(GameObject.Find("cehuangyi"));
     }
 }

@@ -9,9 +9,12 @@ public class Koishi : Character
     {
         SpellDemo1 a = new SpellDemo1();
         a.beforeSpellTime = 0f;
-        a.spellKeepTime = 10f;
+        a.spellKeepTime = 30f;
         spellList.Add(a);
-        
+        SpellDemo b = new SpellDemo();
+        b.beforeSpellTime = 1f;
+        b.spellKeepTime = 30f;
+        spellList.Add(b);
         Spell();
     }
 

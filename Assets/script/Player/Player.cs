@@ -5,8 +5,9 @@ public class Player : MonoBehaviour
 {
 
     float KEYBOARD_SPEED = 0.002f;
-    float KEYBOARD_MOVE_LEN = 0.12f;
-
+    float KEYBOARD_MOVE_LEN = 0.06f;
+    const float KEYBOARD_MOVE_LEN_LOW = 0.03f;
+    const float KEYBOARD_MOVE_LEN_HIGH = 0.06f;
     void Start()
     {
 
@@ -23,13 +24,15 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "EnemyBullet")
         {
-            Destroy(other.gameObject);
+
             this.transform.position = new Vector3(0, -4, 0);
             var objs = GameObject.FindGameObjectsWithTag("EnemyBullet");
-
+            Debug.Log("?");
             foreach (GameObject obj in objs)
             {
-                obj.GetComponent<Bullet>().DestroyMe();
+                Bullet blt = obj.GetComponent<Bullet>();
+                if (blt!=null)
+                    blt.DestroyMe();
             }
         }
     }
@@ -41,10 +44,10 @@ public class Player : MonoBehaviour
     {
 
         Vector3 newPlayerPosition = transform.position;
-        KEYBOARD_MOVE_LEN = 0.12f;
+        KEYBOARD_MOVE_LEN= KEYBOARD_MOVE_LEN_HIGH;
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            KEYBOARD_MOVE_LEN = 0.04f;
+            KEYBOARD_MOVE_LEN = KEYBOARD_MOVE_LEN_LOW;
         }
 
 

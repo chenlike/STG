@@ -37,12 +37,14 @@ public abstract class SpellCard
     private GameObject _privateObj = new GameObject();
     private GameObjectBase bulletShooter;
     private bool isBulletShooterNull = false;
+    
     private void InitBulletShooter()
     {
         _privateObj.name = "privateObj";
         bulletShooter = _privateObj.AddComponent<GameObjectBase>();
         bulletShooter.SetEnable();
     }
+
     /// <summary>
     /// 启动协程
     /// </summary>

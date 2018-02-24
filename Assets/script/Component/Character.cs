@@ -29,15 +29,22 @@ public class Character : MonoBehaviour
         //更新当前index
         nowSpellCardIndex = index;
 
-
         spellList[index].Prepare();
-        yield return new WaitForSecondsRealtime(spellList[index].beforeSpellTime);
+        yield return new WaitForSeconds(spellList[index].beforeSpellTime);
         spellList[index].Spell();
 
-        yield return new WaitForSecondsRealtime(spellList[index].spellKeepTime);
+        yield return new WaitForSeconds(spellList[index].spellKeepTime);
         spellList[index].StopSpell();
+
+
+        foreach (var i in GameObject.FindGameObjectsWithTag("EnemyBullet"))
+        {
+            Object.Destroy(i);
+        }
+
         yield return StartCoroutine(StartSpellCard(index + 1));
     }
+
 
     /// <summary>
     /// 从index开始施放符卡
@@ -52,12 +59,13 @@ public class Character : MonoBehaviour
         StartCoroutine(StartSpellCard(0));
     }
 
+
     /// <summary>
     /// 停止施放
     /// </summary>
     protected void StopNowSpell()
     {
-        StopCoroutine("StartSpellCard");
+        StopAllCoroutines();
     }
 
 

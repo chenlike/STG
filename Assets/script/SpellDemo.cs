@@ -6,36 +6,34 @@ public class SpellDemo : SpellCard
 {
     public override void Prepare()
     {
-
+        t = CreateEmptyBulletShooter();
+        t.GetComponent<BulletShooter>().updateEvent += Ro;
+        tem = PublicObj.Template.GetTemplate("pinkMi");
     }
     GameObject t=null;
-
+    GameObject tem;
     IEnumerator a()
     {
-
-        GameObject tem;
-        tem = PublicObj.Template.GetTemplate("pinkMi");
         List<GameObject> list = null;
-
         while (true)
         {
-            yield return new WaitForSeconds(0.051f);
-            list = Danmu.CircleDanmu.CreateCircleDanmu(tem, t.transform, 20,0.6f);
-            Utils.DanmuUtils.PushObjLength(list, 0.5f);
+
+            yield return new WaitForFixedUpdate();
+
+
+            list = Danmu.CircleDanmu.CreateCircleDanmu(tem, t.transform, 15,0.6f);
             t.GetComponent<BulletShooter>().Shoot(list);
         }
     }
+    float speed =4f;
     public void Ro(GameObject obj)
     {
-        obj.transform.Rotate(Vector3.forward * 2f);
+        obj.transform.Rotate(speed*Vector3.forward);
     }
+
     public override void Spell()
     {
-
-
-        t = CreateEmptyBulletShooter();
         t.SetActive(true);
-        t.GetComponent<BulletShooter>().updateEvent += Ro;
         StartCoroutine(a());
     }
 

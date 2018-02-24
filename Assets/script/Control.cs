@@ -6,9 +6,8 @@ public class Control : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //加载资源
         PublicObj.Template.LoadAllResources();
-
-
 
         GameObject.Find("koishi").AddComponent<Koishi>();
 	}

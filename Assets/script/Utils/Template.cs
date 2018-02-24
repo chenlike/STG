@@ -40,9 +40,10 @@ namespace PublicObj
         /// <returns></returns>
         public static GameObject GetTemplate(string name)
         {
+
             return _resourcePool[name];
         }
-
+        
     }
 }
 

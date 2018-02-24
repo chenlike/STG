@@ -42,6 +42,7 @@ public class Bullet : Enemy,IObjectPool
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.tag);
         if (isTouchWallDead)
         {
             touchEvent?.Invoke(this.gameObject, collision.gameObject);
