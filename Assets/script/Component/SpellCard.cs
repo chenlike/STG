@@ -30,14 +30,18 @@ public abstract class SpellCard
     /// 施放符卡前等待时间
     /// </summary>
     public float beforeSpellTime { get; set; }
-
+    /// <summary>
+    /// 当前施放的符卡的Obj
+    /// </summary>
+    public GameObject spellGameObject { get; set; }
+    
     /*
         为了获得StartCoroutine方法先创建个GameObject挂上脚本 设置属性 不影响到其他物体
     */
     private GameObject _privateObj = new GameObject();
     private GameObjectBase bulletShooter;
     private bool isBulletShooterNull = false;
-    
+
     private void InitBulletShooter()
     {
         _privateObj.name = "privateObj";
@@ -72,7 +76,7 @@ public abstract class SpellCard
     /// 创建一个空的BulletShooter Gameobject
     /// </summary>
     /// <returns>false Active的GameObject</returns>
-    protected GameObject CreateEmptyBulletShooter()
+    public BulletShooter CreateEmptyBulletShooter()
     {
         GameObject empty = new GameObject();
         empty.name = "GameObjShooter";
@@ -80,18 +84,22 @@ public abstract class SpellCard
         BulletShooter bulletShooter =  empty.AddComponent<BulletShooter>();
         empty.transform.rotation = Quaternion.identity;
         bulletShooter.SetDefault();
-        return empty;
+
+
+
+        return bulletShooter;
     }
     /// <summary>
     ///  按位置 创建一个空的BulletShooter Gameobject
     /// </summary>
     /// <param name="pos">坐标</param>
     /// <returns>false Active的GameObject</returns>
-    protected GameObject CreateEmptyBulletShooter(Vector3 pos)
+    public BulletShooter CreateEmptyBulletShooter(Vector3 pos)
     {
-        GameObject empty = CreateEmptyBulletShooter();
+        BulletShooter t = CreateEmptyBulletShooter();
+        GameObject empty = t.gameObject;
         empty.transform.position = pos;
-        return empty;
+        return t;
     }
     /// <summary>
     /// 启动BulletShooter

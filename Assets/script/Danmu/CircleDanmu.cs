@@ -45,9 +45,8 @@ namespace Danmu
                 if (script == null)
                     script = bullet.AddComponent<Bullet>();
                 script.SetDefault();
-                //parent.rotation.z范围是 -1<z<1  所以*=100
-                //TransformUtils.RotateFromZero(bullet, angle + parent.rotation.z * 100);
-                DanmuUtils.ChangeFaceAngle(bullet,angle + parent.rotation.z * 100);
+
+                DanmuUtils.ChangeFaceAngle(bullet,angle + parent.transform.eulerAngles.z);
                 bullet.GetComponent<Bullet>().flySpeed = flySpeed;
 
                 if (!connectWithParent)
@@ -85,6 +84,17 @@ namespace Danmu
         public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float flySpeed)
         {
             return CreateArcDanmu(bulletTemplate, parent, fromAngle, endAngle, num, flySpeed, false);
+        }
+
+
+        public static List<GameObject> CreateArcDanmuEmpty(GameObject bulletTemplate, Vector3 pos, float startAngle, float endAngle, int num, float flySpeed)
+        {
+
+            if (num == 0) return null;
+            float _startAngle = endAngle;
+            float _endAngle =  (startAngle + 360f);
+            return CreateArcDanmu(bulletTemplate,pos,_startAngle,_endAngle,num,flySpeed);
+
         }
 
 

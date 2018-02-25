@@ -108,6 +108,7 @@ namespace Utils
         {
             obj.transform.eulerAngles = new Vector3(0, 0, angle);
         }
+
     }
 }
 

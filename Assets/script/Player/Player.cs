@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
             this.transform.position = new Vector3(0, -4, 0);
             var objs = GameObject.FindGameObjectsWithTag("EnemyBullet");
-            Debug.Log("?");
+
             foreach (GameObject obj in objs)
             {
                 Bullet blt = obj.GetComponent<Bullet>();
@@ -49,8 +49,6 @@ public class Player : MonoBehaviour
         {
             KEYBOARD_MOVE_LEN = KEYBOARD_MOVE_LEN_LOW;
         }
-
-
         if (Input.GetKey(KeyCode.UpArrow))
         {
             newPlayerPosition.y += KEYBOARD_MOVE_LEN;
@@ -67,7 +65,7 @@ public class Player : MonoBehaviour
         {
             newPlayerPosition.x += KEYBOARD_MOVE_LEN;
         }
-
+        /*
         if (newPlayerPosition.x < -2.752 || newPlayerPosition.x > 2.752)
         {
             newPlayerPosition.x = transform.position.x;
@@ -76,9 +74,7 @@ public class Player : MonoBehaviour
         {
             newPlayerPosition.y = transform.position.y;
         }
-
-
-
+        */
         if (newPlayerPosition == transform.position) return;
         transform.position = newPlayerPosition;
 

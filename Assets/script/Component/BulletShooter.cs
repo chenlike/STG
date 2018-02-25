@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Base;
 using UnityEngine;
 
-class BulletShooter:Enemy,IObjectPool
+public class BulletShooter:Enemy,IObjectPool
 {
     private IEnumerator DelayShoot(List<GameObject> list, float delayTime)
     {

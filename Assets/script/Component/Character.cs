@@ -6,6 +6,8 @@ public class Character : MonoBehaviour
 {
     //TODO 
     //CharacterAnimation Control
+    
+
 
     public List<SpellCard> spellList = new List<SpellCard>();
 
@@ -21,6 +23,10 @@ public class Character : MonoBehaviour
     /// <returns></returns>
     IEnumerator StartSpellCard(int index)
     {
+        spellList.ForEach(sc =>
+        {
+            sc.spellGameObject = this.gameObject;
+        });
         //如果大于list长度break
         if (index >= spellList.Count)
         {

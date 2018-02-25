@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpellDemo1 : SpellCard
 {
     GameObject[] bullets = new GameObject[2];
-    GameObject shooter;
+   
     /// <summary>
     /// 加载资源
     /// </summary>
@@ -21,16 +21,6 @@ public class SpellDemo1 : SpellCard
     /// <param name="v"></param>
     /// <param name="angle"></param>
     /// <returns></returns>
-    private Vector3 RotationMatrix(Vector3 v, float angle)
-    {
-        var x = v.x;
-        var y = v.y;
-        var sin = Mathf.Sin(Mathf.PI * angle / 180);
-        var cos = Mathf.Cos(Mathf.PI * angle / 180);
-        var newX = x * cos + y * sin;
-        var newY = x * -sin + y * cos;
-        return new Vector3((float)newX, (float)newY, 0f);
-    }
     /// <summary>
     /// 发射bullet
     /// </summary>
@@ -55,7 +45,7 @@ public class SpellDemo1 : SpellCard
             for (int i = 0; i < 8; i++)
             {
                 int tem = i % 2 != 0 ? 1 : 0;
-                Vector3 tempPos = RotationMatrix(pos, addAngle + i * 45);
+                Vector3 tempPos = Utils.MathUtils.RotationMatrix(pos, addAngle + i * 45);
                 GameObject b =Danmu.SingleDanmu.CreateSingleDanmu(bullets[tem], new Vector3(tempPos.x, tempPos.y, 0f), addAngle + i * 45 + i % 2 != 0 ? -90f : 0f);
                 Bullet bullet = b.GetComponent<Bullet>();
 
@@ -90,7 +80,14 @@ public class SpellDemo1 : SpellCard
         string idx = obj.GetComponent<Bullet>().message["bullet"];
         string tags = touch.tag.Substring(touch.tag.Length - 1);
         
-        if (tags == "Player") return;
+        if (touch.tag == "Player")
+        {
+            foreach(var a in GameObject.FindGameObjectsWithTag("EnemyBullet"))
+            {
+                Object.Destroy(a);
+            }
+            touch.transform.position = new Vector3(0, -4, 0);
+        }
         if (tags != idx)
         {
             obj.GetComponent<Bullet>().DestroyMe();
@@ -100,9 +97,13 @@ public class SpellDemo1 : SpellCard
     {
         InitRes();
 
-        shooter = CreateEmptyBulletShooter();
-        shooter.GetComponent<BulletShooter>().startEvent += StartShoot;
+   
+
         GameObject chy = Utils.DanmuUtils.InitTemplate(PublicObj.Template.GetTemplate("cehuangyi"), new Vector3(0, 0, 0));
+        BulletShooter blt =  chy.AddComponent<BulletShooter>();
+        blt.SetDefault();
+        blt.startEvent += StartShoot;
+        chy.tag = "Untagged";
         chy.SetActive(true);
         GameObjectBase chyEmy = chy.GetComponent<GameObjectBase>();
         chyEmy .updateEvent += RotateChy;
@@ -110,13 +111,12 @@ public class SpellDemo1 : SpellCard
 
     public override void Spell()
     {
-        
-        shooter.SetActive(true);
+        //shooter.SetActive(true);
     }
 
     public override void StopSpell()
     {
-        Object.Destroy(shooter);
+       // Object.Destroy(shooter);
         Object.Destroy(GameObject.Find("cehuangyi"));
     }
 }

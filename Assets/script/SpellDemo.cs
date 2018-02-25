@@ -7,11 +7,14 @@ public class SpellDemo : SpellCard
     public override void Prepare()
     {
         t = CreateEmptyBulletShooter();
-        t.GetComponent<BulletShooter>().updateEvent += Ro;
+        t.updateEvent += Ro;
         tem = PublicObj.Template.GetTemplate("pinkMi");
     }
-    GameObject t=null;
+
+    BulletShooter t=null;
     GameObject tem;
+
+
     IEnumerator a()
     {
         List<GameObject> list = null;
@@ -34,7 +37,7 @@ public class SpellDemo : SpellCard
 
     public override void Spell()
     {
-        t.SetActive(true);
+        t.SetEnable();
         StartCoroutine(a());
     }
 
