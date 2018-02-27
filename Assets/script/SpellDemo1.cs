@@ -34,7 +34,7 @@ public class SpellDemo1 : SpellCard
         while (true)
         {
             Vector3 pPos = player.transform.position;
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSeconds(0.1f);
             //计算出player与圆心的距离得出向量
             float length = Mathf.Sqrt(pPos.x * pPos.x + pPos.y * pPos.y);
             Vector3 pos = new Vector3(0, length, 0);

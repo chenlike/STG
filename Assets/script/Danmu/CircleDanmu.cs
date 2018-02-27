@@ -64,9 +64,9 @@ namespace Danmu
 
             float angle = fromAngle;
 
-            for (; angle <= endAngle; angle += Mathf.Abs(endAngle - fromAngle) / (float)num)
+            for (; angle <= endAngle; angle += (Mathf.Abs(endAngle - fromAngle) / num))
             {
-                
+                if (danmuList.Count == num) break;
                 GameObject bullet = DanmuUtils.InitTemplate(bulletTemplate, pos);
                 bullet.transform.position = pos;
                 Bullet script = bullet.GetComponent<Bullet>();
@@ -79,6 +79,7 @@ namespace Danmu
                 bullet.GetComponent<Bullet>().flySpeed = flySpeed;
                 danmuList.Add(bullet);
             }
+            
             return danmuList;
         }
         public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float flySpeed)
