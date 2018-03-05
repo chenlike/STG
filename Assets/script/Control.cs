@@ -8,8 +8,9 @@ public class Control : MonoBehaviour {
 	void Start () {
         //加载资源
         PublicObj.Template.LoadAllResources();
-        GameObject.Find("koishi").AddComponent<Koishi>();
-	}
+        //GameObject.Find("koishi").AddComponent<Koishi>();
+        GameObject.Find("zoufangzi").AddComponent<Zoufangzi>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
