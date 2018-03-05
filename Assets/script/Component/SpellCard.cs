@@ -53,11 +53,11 @@ public abstract class SpellCard
     /// 启动协程
     /// </summary>
     /// <param name="routine"></param>
-    protected void StartCoroutine(IEnumerator routine)
+    protected Coroutine StartCoroutine(IEnumerator routine)
     {
         if (!isBulletShooterNull)
             InitBulletShooter();
-        bulletShooter.StartCoroutine(routine);
+        return bulletShooter.StartCoroutine(routine);
     }
     protected void StopCoroutine(string methodName)
     {

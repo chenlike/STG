@@ -11,8 +11,6 @@ public class SpellDemo2 : SpellCard
     GameObject[] _tem = new GameObject[6];
     BulletShooter _bltShooter;
     Vector3 rotateVec = new Vector3(-0.2f, 0.3f, 0);
-
-
     IEnumerator SpeedUp(GameObject obj)
     {
         yield return new WaitForSeconds(2.5f);
@@ -22,7 +20,7 @@ public class SpellDemo2 : SpellCard
     {
         StartCoroutine(SpeedUp(obj));
     }
-    IEnumerator SetCircle(GameObject obj,int idx)
+    IEnumerator SetCircle(int idx)
     {
         if (bulletCircleList[idx] != null)
         {
@@ -40,54 +38,59 @@ public class SpellDemo2 : SpellCard
                 if (g.name != "GameObjShooter")
                     g.GetComponent<Bullet>().StartCoroutine(SpeedUp(g));
             }
-            yield return SetCircle(obj,idx + 1);
+            yield return SetCircle(idx + 1);
         }
 
     }
+
     List<List<GameObject>>[] bulletCircleList = new List<List<GameObject>>[6];
 
+    IEnumerator BigLoop()
+    {
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(3);
+            var redCircle = Five(rotateVec
+        , speed: 0f
+        );
+            var pinkCircle = Five(
+                    mainVector: new Vector3(0, 0.77f, 0),
+                    idx: 1,
+                    pushLength: 0.55f,
+                    startAngle: 92f,
+                    endAngle: 267f,
+                    angleStep: 72,
+                    speed: 0f,
+                    cardsDivideAngle: 2f
+                );
+            var blueCircle = Five(
+                    isEmpty: false,
+                    mainVector: new Vector3(0, -0.95f, 0),
+                    idx: 2,
+                    pushLength: 0.8f,
+                    startAngle: 100f,
+                    endAngle: 259f,
+                    angleStep: 72,
+                    speed: 0f,
+                    cardsDivideAngle: 2f
+                );
+            bulletCircleList[0] = redCircle;
+            bulletCircleList[1] = pinkCircle;
+            bulletCircleList[2] = blueCircle;
+            yield return SetCircle(0);
+        }
 
+
+    }
     void StartDanmuEvent(GameObject obj)
     {
-        var redCircle = Five(rotateVec
-            , speed: 0f
-            );
-        var pinkCircle = Five(
-                mainVector: new Vector3(0, 0.77f, 0),
-                idx: 1,
-                pushLength: 0.55f,
-                startAngle: 92f,
-                endAngle: 267f,
-                angleStep: 72,
-                speed: 0f,
-                cardsDivideAngle: 2f
-            );
-        var blueCircle = Five(
-                isEmpty: false,
-                mainVector: new Vector3(0, -0.95f, 0),
-                idx: 2,
-                pushLength: 0.8f,
-                startAngle: 100f,
-                endAngle: 259f,
-                angleStep: 72,
-                speed: 0f,
-                cardsDivideAngle: 2f
-            );
-        bulletCircleList[0] = redCircle;
-        bulletCircleList[1] = pinkCircle;
-        bulletCircleList[2] = blueCircle;
-
-
-
-        StartCoroutine(SetCircle(obj,0));
-
+        StartCoroutine(BigLoop());
     }
     public override void Prepare()
     {
         InitRes();
         _bltShooter = CreateEmptyBulletShooter();
         _bltShooter.startEvent += StartDanmuEvent;
-
     }
 
     public override void Spell()

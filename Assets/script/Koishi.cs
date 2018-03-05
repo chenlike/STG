@@ -8,11 +8,10 @@ public class Koishi : Character
 
     void Start()
     {
-        SpellDemo2 t = new SpellDemo2();
+        SpellDemo3 t = new SpellDemo3();
         t.beforeSpellTime = 0f;
-        t.spellKeepTime = 1000f;
+        t.spellKeepTime = 300000f;
         spellList.Add(t);
-
         Spell();
     }
 

@@ -9,7 +9,7 @@ namespace PublicObj
     static class ObjectPool
     {
         //最低水位
-        private static  int _minLimit = 500;
+        private static  int _minLimit = 100;
         static Dictionary<string, ConcurrentQueue<GameObject>> pool = new Dictionary<string, ConcurrentQueue<GameObject>>();
 
         /// <summary>

@@ -86,6 +86,13 @@ namespace Utils
         {
             obj.transform.eulerAngles = FocusToTarget(target, obj.transform.position);
         }
+        public static void ChangeFocus(List<GameObject> list, Vector3 target)
+        {
+            list.ForEach(obj =>
+            {
+                ChangeFocus(obj,target);
+            });
+        }
         /// <summary>
         /// 让弹幕在当前位置和朝向向前移动一段距离
         /// </summary>
@@ -108,7 +115,34 @@ namespace Utils
         {
             obj.transform.eulerAngles = new Vector3(0, 0, angle);
         }
-
+        /// <summary>
+        /// 更换弹幕外观
+        /// </summary>
+        /// <param name="before">要被更换的obj</param>
+        /// <param name="after">新样子</param>
+        public static void ReplaceTemplate(GameObject before, SpriteRenderer after)
+        {
+            before.GetComponent<SpriteRenderer>().sprite = after.sprite;
+            before.name = after.gameObject.name;
+        }
+        public static void ReplaceTemplate(GameObject before, GameObject after)
+        {
+            ReplaceTemplate(before, after.GetComponent<SpriteRenderer>());
+        }
+        public static void ReplaceTemplate(List<GameObject> before, GameObject after)
+        {
+            before.ForEach(obj =>
+            {
+                ReplaceTemplate(obj, after.GetComponent<SpriteRenderer>());
+            });
+        }
+        public static void ReplaceTemplate(List<GameObject> before, SpriteRenderer after)
+        {
+            before.ForEach(obj =>
+            {
+                ReplaceTemplate(obj, after);
+            });
+        }
     }
 }
 
