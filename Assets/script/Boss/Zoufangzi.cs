@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Boss.zoufangzi;
+using System;
 
 public class Zoufangzi : Character
 {
+
+
     void Start()
     {
-        Fei1 fei1 = new Fei1();
-        fei1.beforeSpellTime = 0;
-        fei1.spellKeepTime = 60f;
-        spellList.Add(fei1);
+        AddSpellCard("Boss.zoufangzi.Fei1",spellKeepTime:30f);
         Spell();
     }
-
-    // Update is called once per frame
     void Update()
     {
 

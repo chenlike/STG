@@ -34,7 +34,8 @@ public abstract class SpellCard
     /// 当前施放的符卡的Obj
     /// </summary>
     public GameObject spellGameObject { get; set; }
-    
+
+    public Vector3 startPosition = new Vector3(0, 0, 0);
     /*
         为了获得StartCoroutine方法先创建个GameObject挂上脚本 设置属性 不影响到其他物体
     */

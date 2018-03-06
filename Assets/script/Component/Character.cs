@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-public class Character : MonoBehaviour
+public class Character : Base.GameObjectBase
 {
     //TODO 
     //CharacterAnimation Control
@@ -35,6 +36,9 @@ public class Character : MonoBehaviour
         //更新当前index
         nowSpellCardIndex = index;
 
+        //重置位置到 下一个符卡的起始位置
+        MoveTo(spellList[index].startPosition, 1);
+
         spellList[index].Prepare();
         yield return new WaitForSeconds(spellList[index].beforeSpellTime);
         spellList[index].Spell();
@@ -45,7 +49,7 @@ public class Character : MonoBehaviour
 
         foreach (var i in GameObject.FindGameObjectsWithTag("EnemyBullet"))
         {
-            Object.Destroy(i);
+            UnityEngine.Object.Destroy(i);
         }
 
         yield return StartCoroutine(StartSpellCard(index + 1));
@@ -64,8 +68,6 @@ public class Character : MonoBehaviour
     {
         StartCoroutine(StartSpellCard(0));
     }
-
-
     /// <summary>
     /// 停止施放
     /// </summary>
@@ -74,5 +76,37 @@ public class Character : MonoBehaviour
         StopAllCoroutines();
     }
 
+    public void MoveTo(Vector3 newPosition,float time,bool wait=false)
+    {
+        var itween = this.GetComponent<iTween>();
+        if(wait && itween != null)
+        {
+            return;
+        }
+        if (wait == false && itween!=null)
+        {
+            Destroy(itween);
+            iTween.MoveTo(this.gameObject, newPosition, time);
+        }else if (wait == false)
+        {
+            iTween.MoveTo(this.gameObject, newPosition, time);
+        }
+        
+    }
 
+    /// <summary>
+    /// 增加符卡到list中
+    /// </summary>
+    /// <param name="spellType">符卡类型(全称 带有命名空间)</param>
+    /// <param name="beforeSpellTime">施放前时间</param>
+    /// <param name="spellKeepTime">持续时间</param>
+    public void AddSpellCard(string spellType, float beforeSpellTime = 0f, float spellKeepTime = 0f)
+    {
+        //反射
+        Type type = System.Type.GetType(spellType);
+        var spellCard = Activator.CreateInstance(type);
+        type.GetProperty("beforeSpellTime").SetValue(spellCard, beforeSpellTime, null);
+        type.GetProperty("spellKeepTime").SetValue(spellCard, spellKeepTime, null);
+        spellList.Add((SpellCard)spellCard);
+    }
 }

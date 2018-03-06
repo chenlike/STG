@@ -1,78 +1,84 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Fei1 : SpellCard
+namespace Boss.zoufangzi
 {
-    GameObject tem;
-    BulletShooter blts;
-    GameObject player;
-    int[] rd = { -1, 0, 1 };
-    IEnumerator CircleEvent(GameObject obj)
+    public class Fei1 : SpellCard
     {
-
-        int loop = 1;
-        int sum = 0;
-        while (true)
+        GameObject tem;
+        BulletShooter blts;
+        GameObject player;
+        int[] rd = { -2, -1, 0, 1, 2 };
+        IEnumerator CircleEvent(GameObject obj)
         {
-            yield return new WaitForSeconds(0.5f);
-            sum++;
-            Utils.DanmuUtils.ChangeFocus(obj, player.transform.position);
-            loop *= -1;
-            for (int i = 1; i <= 4; i++)
+
+            int loop = 1;
+            int sum = 0;
+            var character = spellGameObject.GetComponent<Character>();
+            while (true)
             {
-                var circle = Danmu.CircleDanmu.CreateCircleDanmu(tem, obj.transform, 28,0.3f+i*0.05f);
-                circle.ForEach(dm =>
+                yield return new WaitForSeconds(0.5f);
+                sum++;
+                Utils.DanmuUtils.ChangeFocus(obj, player.transform.position);
+                loop *= -1;
+                for (int i = 1; i <= 4; i++)
                 {
-                    Utils.DanmuUtils.ChangeFaceAngle(dm, dm.transform.eulerAngles.z + (i+0.5f) * loop);
-                });
-                blts.Shoot(circle);
-                for(int j=0;j<2;j++)
-                    yield return new WaitForFixedUpdate();
+                    var circle = Danmu.CircleDanmu.CreateCircleDanmu(tem, obj.transform, 28, 0.3f + i * 0.05f);
+                    circle.ForEach(dm =>
+                    {
+                        Utils.DanmuUtils.ChangeFaceAngle(dm, dm.transform.eulerAngles.z + (i + 0.5f) * loop);
+                    });
+                    blts.Shoot(circle);
+                    for (int j = 0; j < 2; j++)
+                        yield return new WaitForFixedUpdate();
+                }
 
-                if (sum %4== 0)
+
+                if (sum % 2 == 0)
                 {
-                    
                     Vector3 newPosition = spellGameObject.transform.position;
-
                     var x = rd[Random.Range(0, rd.Length)];
                     var y = rd[Random.Range(0, rd.Length)];
-                    newPosition.x += x;
-                    newPosition.y += y;
-                    //TODO 人物随机移动
-                    //iTween.MoveTo(spellGameObject, newPosition, 1f);
+                    newPosition.x += x * 0.5f;
+                    newPosition.y += y * 0.5f;
+                    if (newPosition.y < 0)
+                    {
+                        newPosition.y = spellGameObject.transform.position.y;
+                    }
+                    character.MoveTo(newPosition, 1.5f);
                 }
-            }
 
+
+            }
+        }
+        void GoCoroutine(GameObject obj)
+        {
+            StartCoroutine(CircleEvent(obj));
+        }
+
+        public override void Prepare()
+        {
+            InitRes();
+            player = GameObject.Find("player") as GameObject;
+            blts = CreateEmptyBulletShooter(spellGameObject.transform.position);
+            blts.transform.parent = spellGameObject.transform;
+            blts.startEvent += GoCoroutine;
 
         }
-    }
-    void GoCoroutine(GameObject obj)
-    {
-        StartCoroutine(CircleEvent(obj));
+
+        public override void Spell()
+        {
+            blts.SetEnable();
+        }
+
+        public override void StopSpell()
+        {
+            Object.Destroy(blts);
+        }
+        void InitRes()
+        {
+            tem = PublicObj.Template.GetTemplate("blueCard");
+        }
     }
 
-    public override void Prepare()
-    {
-        InitRes();
-        player = GameObject.Find("player") as GameObject;
-        blts = CreateEmptyBulletShooter(spellGameObject.transform.position);
-        blts.transform.parent = spellGameObject.transform;
-        blts.startEvent += GoCoroutine;
-
-    }
-
-    public override void Spell()
-    {
-        blts.SetEnable();
-    }
-
-    public override void StopSpell()
-    {
-        Object.Destroy(blts);
-    }
-    void InitRes()
-    {
-        tem = PublicObj.Template.GetTemplate("blueCard");
-    }
 }
