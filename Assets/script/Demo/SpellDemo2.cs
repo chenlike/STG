@@ -88,7 +88,6 @@ public class SpellDemo2 : SpellCard
     }
     public override void Prepare()
     {
-        InitRes();
         _bltShooter = CreateEmptyBulletShooter();
         _bltShooter.startEvent += StartDanmuEvent;
     }
@@ -173,7 +172,7 @@ public class SpellDemo2 : SpellCard
 
 
 
-    void InitRes()
+    public override void InitAndLoadResources()
     {
         _tem[0] = PublicObj.Template.GetTemplate("redCard");
         _tem[1] = PublicObj.Template.GetTemplate("pupCard");

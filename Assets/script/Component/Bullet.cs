@@ -12,6 +12,7 @@ public class Bullet : Enemy,IObjectPool
     /// 是否触碰墙壁调用touchWallEvent
     /// </summary>
     bool isTouchWallDead = true;
+    public float destoryDelayTime { get; set; }
     /// <summary>
     /// TouchEvent
     /// </summary>
@@ -37,8 +38,7 @@ public class Bullet : Enemy,IObjectPool
     protected void TouchWall(GameObject obj, GameObject touchObj)
     {
         if (touchObj.gameObject.transform.parent != null && touchObj.gameObject.transform.parent.gameObject.name == "Wall")
-            DestroyMe();
-        
+            DestroyMe(destoryDelayTime);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {

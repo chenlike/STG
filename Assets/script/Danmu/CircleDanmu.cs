@@ -37,7 +37,7 @@ namespace Danmu
 
             for (; angle <= endAngle; angle += Mathf.Abs(endAngle - fromAngle) / num)
             {
-
+                if (danmuList.Count == num) break;
 
                 GameObject bullet = DanmuUtils.InitTemplate(bulletTemplate, parent);
                 bullet.transform.position = parent.position;

@@ -48,6 +48,9 @@ public class SpellDemo3 : SpellCard
 
     }
 
+    public override void InitAndLoadResources()
+    {
 
+    }
 
 }

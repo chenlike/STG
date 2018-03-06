@@ -28,6 +28,10 @@ public class SpellDemo : SpellCard
             t.GetComponent<BulletShooter>().Shoot(list);
         }
     }
+    public override void InitAndLoadResources()
+    {
+
+    }
     float speed = 0f;
     public void Ro(GameObject obj)
     {

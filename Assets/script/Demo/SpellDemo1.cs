@@ -10,7 +10,7 @@ public class SpellDemo1 : SpellCard
     /// <summary>
     /// 加载资源
     /// </summary>
-    private void InitRes()
+    public override void InitAndLoadResources()
     {
         bullets[0] = PublicObj.Template.GetTemplate("redMi");
         bullets[1] = PublicObj.Template.GetTemplate("blueMi");
@@ -95,7 +95,6 @@ public class SpellDemo1 : SpellCard
     }
     public override void Prepare()
     {
-        InitRes();
 
    
 

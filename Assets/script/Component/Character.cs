@@ -37,9 +37,10 @@ public class Character : Base.GameObjectBase
         nowSpellCardIndex = index;
 
         //重置位置到 下一个符卡的起始位置
-        MoveTo(spellList[index].startPosition, 1);
+        spellList[index].InitAndLoadResources();
 
         spellList[index].Prepare();
+        MoveTo(spellList[index].startPosition, 1);
         yield return new WaitForSeconds(spellList[index].beforeSpellTime);
         spellList[index].Spell();
 

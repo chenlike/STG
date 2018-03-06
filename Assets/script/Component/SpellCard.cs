@@ -5,7 +5,10 @@ using Base;
 
 public abstract class SpellCard
 {
-
+    /// <summary>
+    /// 初始化设置 以及加载资源
+    /// </summary>
+    public abstract void InitAndLoadResources();
     /// <summary>
     /// 符卡的提前准备工作
     /// </summary>
@@ -21,7 +24,7 @@ public abstract class SpellCard
     /// <summary>
     /// 符卡名
     /// </summary>
-    public string name { get; set; }
+    public string spellCardName { get; set; }
     /// <summary>
     /// 符卡持续时间
     /// </summary>
@@ -85,9 +88,18 @@ public abstract class SpellCard
         BulletShooter bulletShooter =  empty.AddComponent<BulletShooter>();
         empty.transform.rotation = Quaternion.identity;
         bulletShooter.SetDefault();
-
-
-
+        return bulletShooter;
+    }
+    public BulletShooter CreateEmptyBulletShooter(Transform parent)
+    {
+        GameObject empty = new GameObject();
+        empty.name = "GameObjShooter";
+        empty.tag = "EnemyBullet";
+        BulletShooter bulletShooter = empty.AddComponent<BulletShooter>();
+        bulletShooter.transform.parent = parent;
+        bulletShooter.transform.position = parent.transform.position;
+        empty.transform.rotation = Quaternion.identity;
+        bulletShooter.SetDefault();
         return bulletShooter;
     }
     /// <summary>

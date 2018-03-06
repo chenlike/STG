@@ -5,6 +5,13 @@ namespace Base
 {
     public class Enemy : GameObjectBase
     {
+
+        IEnumerator DelayDestoryEvent(float time)
+        {
+            yield return new WaitForSeconds(time);
+            DestroyMe();
+        }
+
         /// <summary>
         /// 向朝向的方向飞行的速度
         /// </summary>
@@ -17,13 +24,25 @@ namespace Base
         {
             obj.transform.position += transform.up * flySpeed * 0.1f;
         }
+
+
+
         /// <summary>
         /// 销毁自己 加入对象池
         /// </summary>
-        public void DestroyMe()
+        public void DestroyMe(float destoryDelayTime=0f)
         {
-            SetDisable();
-            PublicObj.ObjectPool.AddToPool(this.gameObject);
+
+            if (destoryDelayTime != 0f)
+            {
+                StartCoroutine(DelayDestoryEvent(destoryDelayTime));
+            }
+            else
+            {
+                SetDisable();
+                PublicObj.ObjectPool.AddToPool(this.gameObject);
+            }
+
         }
     }
 

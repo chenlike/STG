@@ -58,7 +58,6 @@ namespace Boss.zoufangzi
 
         public override void Prepare()
         {
-            InitRes();
             player = GameObject.Find("player") as GameObject;
             blts = CreateEmptyBulletShooter(spellGameObject.transform.position);
             blts.transform.parent = spellGameObject.transform;
@@ -75,7 +74,8 @@ namespace Boss.zoufangzi
         {
             Object.Destroy(blts);
         }
-        void InitRes()
+
+        public override void InitAndLoadResources()
         {
             tem = PublicObj.Template.GetTemplate("blueCard");
         }
