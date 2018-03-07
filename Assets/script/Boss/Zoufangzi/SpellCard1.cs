@@ -9,7 +9,7 @@ namespace Boss.zoufangzi
     public class SpellCard1 : SpellCard
     {
         GameObject[] lasers = new GameObject[2];
-        GameObject[] circles = new GameObject[3];
+        GameObject[] circles = new GameObject[6];
         GameObject player;
 
 
@@ -140,15 +140,47 @@ namespace Boss.zoufangzi
         {
             StartCoroutine(Laser());
         }
-
-
-        int[] rdList = { 0, 1, 2 };
         IEnumerator RandomBall()
         {
+   
             while (true)
             {
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(3.5f);
 
+                var ballList1 = Danmu.RandomDanmu.CreateAreaRandomDanmu(
+                    new Vector3(-3.68f, 4.26f, 0),
+                    new Vector3(2.96f, 1.23f, 0),
+                    circles,
+                    20,
+                    0.3f
+                    );
+                var ballList2 = Danmu.RandomDanmu.CreateAreaRandomDanmu(
+                    new Vector3(-3.68f, 4.26f, 0),
+                    new Vector3(2.96f, 1.23f, 0),
+                    circles,
+                    20,
+                    0.3f
+                    );
+
+                ballBst.Shoot(ballList1);
+                yield return new WaitForSeconds(0.8f);
+                ballBst.Shoot(ballList2);
+
+
+                yield return new WaitForSeconds(0.8f);
+                Vector3 playerPos = player.transform.position;
+                ballList1.ForEach(obj =>
+                {
+                    Utils.DanmuUtils.ChangeFocus(obj, playerPos);
+                    obj.GetComponent<Bullet>().flySpeed = 1f;
+                });
+                yield return new WaitForFixedUpdate();
+                playerPos = player.transform.position;
+                ballList2.ForEach(obj =>
+                {
+                    Utils.DanmuUtils.ChangeFocus(obj, playerPos);
+                    obj.GetComponent<Bullet>().flySpeed = 1f;
+                });
             }
         }
         void GoCoroutineRandomBall(GameObject obj)
@@ -169,11 +201,13 @@ namespace Boss.zoufangzi
         public override void Spell()
         {
             laserBst.SetEnable();
+            ballBst.SetEnable();
         }
 
         public override void StopSpell()
         {
-
+            Object.Destroy(laserBst);
+            Object.Destroy(ballBst);
         }
         public override void InitAndLoadResources()
         {
@@ -185,6 +219,9 @@ namespace Boss.zoufangzi
             circles[0] = Template.GetTemplate("smallWhiteBall");
             circles[1] = Template.GetTemplate("blueBall");
             circles[2] = Template.GetTemplate("bigBlueBall");
+            circles[3] = Template.GetTemplate("smallWhiteBall");
+            circles[4] = Template.GetTemplate("blueBall");
+            circles[5] = Template.GetTemplate("blueBall");
         }
     }
 
