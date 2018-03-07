@@ -17,9 +17,9 @@ namespace Danmu
         /// <param name="flySpeed">速度</param>
         /// <param name="faceAngle">面朝方向</param>
         /// <returns></returns>
-        public static List<GameObject> CreateAreaRandomDanmu(Vector3 leftTopPoint,Vector3 rightBottomPoint,GameObject[] templates,int num,float flySpeed = 0f,float faceAngle=0f)
+        public static List<Bullet> CreateAreaRandomDanmu(Vector3 leftTopPoint,Vector3 rightBottomPoint,GameObject[] templates,int num,float flySpeed = 0f,float faceAngle=0f)
         {
-            List<GameObject> list = new List<GameObject>();
+           var list = new List<Bullet>();
             int templatesNum = templates.Length;
             
             while (list.Count < num)
@@ -30,13 +30,14 @@ namespace Danmu
 
                 GameObject bullet = DanmuUtils.InitTemplate(templates[selectIdx], pos);
                 bullet.transform.position = pos;
+
                 Bullet script = bullet.GetComponent<Bullet>();
                 if (script == null)
                     script = bullet.AddComponent<Bullet>();
                 script.SetDefault();
                 script.flySpeed = flySpeed;
                 Utils.DanmuUtils.ChangeFaceAngle(bullet, faceAngle);
-                list.Add(bullet);
+                list.Add(script);
             }
 
         

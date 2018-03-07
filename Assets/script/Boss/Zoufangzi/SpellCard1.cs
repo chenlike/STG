@@ -15,7 +15,7 @@ namespace Boss.zoufangzi
 
         BulletShooter laserBst;
         BulletShooter ballBst;
-        List<GameObject> GetList(int templateIdx, float startAngle, float endAngle,int num,float speed)
+        List<Bullet> GetList(int templateIdx, float startAngle, float endAngle,int num,float speed)
         {
             return CircleDanmu.CreateArcDanmu(lasers[templateIdx], spellGameObject.transform, startAngle, endAngle, num, speed);
         }
@@ -136,7 +136,7 @@ namespace Boss.zoufangzi
 
 
         }
-        void GoCoroutineLaser(GameObject obj)
+        void GoCoroutineLaser(GameObject bltObj)
         {
             StartCoroutine(Laser());
         }
@@ -169,17 +169,19 @@ namespace Boss.zoufangzi
 
                 yield return new WaitForSeconds(0.8f);
                 Vector3 playerPos = player.transform.position;
+                Utils.DanmuUtils.ChangeFocus(ballList1[0].gameObject, playerPos);
+                float getAngle = ballList1[0].transform.eulerAngles.z;
                 ballList1.ForEach(obj =>
                 {
-                    Utils.DanmuUtils.ChangeFocus(obj, playerPos);
-                    obj.GetComponent<Bullet>().flySpeed = 1f;
+                    Utils.DanmuUtils.ChangeFaceAngle(obj.gameObject,getAngle);
+                    obj.flySpeed = 1f;
                 });
                 yield return new WaitForFixedUpdate();
                 playerPos = player.transform.position;
                 ballList2.ForEach(obj =>
                 {
-                    Utils.DanmuUtils.ChangeFocus(obj, playerPos);
-                    obj.GetComponent<Bullet>().flySpeed = 1f;
+                    Utils.DanmuUtils.ChangeFaceAngle(obj.gameObject, getAngle);
+                    obj.flySpeed = 1f;
                 });
             }
         }

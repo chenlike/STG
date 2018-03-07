@@ -27,19 +27,16 @@ public class Bullet : Enemy,IObjectPool
         SetDisable();
         owner = null;
         startEvent = null;
-        touchEvent = TouchWall;
+        touchEvent = null;
         updateEvent = FlyForward;
     }
-    /// <summary>
-    /// 触屏到墙壁
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="touchObj"></param>
-    protected void TouchWall(GameObject obj, GameObject touchObj)
+
+
+    private void OnBecameInvisible()
     {
-        if (touchObj.gameObject.transform.parent != null && touchObj.gameObject.transform.parent.gameObject.name == "Wall")
-            DestroyMe(destoryDelayTime);
+        DestroyMe(destoryDelayTime);
     }
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
 

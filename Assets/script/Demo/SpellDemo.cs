@@ -8,7 +8,7 @@ public class SpellDemo : SpellCard
     {
         t = CreateEmptyBulletShooter();
         t.updateEvent += Ro;
-        tem = PublicObj.Template.GetTemplate("pinkMi");
+
     }
 
     BulletShooter t=null;
@@ -17,7 +17,7 @@ public class SpellDemo : SpellCard
 
     IEnumerator a()
     {
-        List<GameObject> list = null;
+        List<Bullet> list = null;
         while (true)
         {
 
@@ -30,7 +30,7 @@ public class SpellDemo : SpellCard
     }
     public override void InitAndLoadResources()
     {
-
+        tem = PublicObj.Template.GetTemplate("pinkMi");
     }
     float speed = 0f;
     public void Ro(GameObject obj)

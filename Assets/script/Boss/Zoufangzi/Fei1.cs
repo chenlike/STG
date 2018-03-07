@@ -26,7 +26,7 @@ namespace Boss.zoufangzi
                     var circle = Danmu.CircleDanmu.CreateCircleDanmu(tem, obj.transform, 28, 0.3f + i * 0.05f);
                     circle.ForEach(dm =>
                     {
-                        Utils.DanmuUtils.ChangeFaceAngle(dm, dm.transform.eulerAngles.z + (i + 0.5f) * loop);
+                        Utils.DanmuUtils.ChangeFaceAngle(dm.gameObject, dm.transform.eulerAngles.z + (i + 0.5f) * loop);
                     });
                     blts.Shoot(circle);
                     for (int j = 0; j < 2; j++)
@@ -77,6 +77,7 @@ namespace Boss.zoufangzi
 
         public override void InitAndLoadResources()
         {
+            spellCardName = "1非";
             tem = PublicObj.Template.GetTemplate("blueCard");
         }
     }

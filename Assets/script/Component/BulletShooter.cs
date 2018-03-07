@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class BulletShooter:Enemy,IObjectPool
 {
-    private IEnumerator DelayShoot(List<GameObject> list, float delayTime)
+    private IEnumerator DelayShoot(List<Bullet> list, float delayTime)
     {
-        foreach (GameObject obj in list)
+        foreach (Bullet obj in list)
         {
             if (delayTime != 0)
                 yield return new WaitForSeconds(delayTime);
-            obj.SetActive(true);
+            obj.SetEnable();
         }
     }
-    private IEnumerator DelayShootList(List< List<GameObject>> list,float listDelayTime, float bulletDelayTime)
+    private IEnumerator DelayShootList(List< List<Bullet>> list,float listDelayTime, float bulletDelayTime)
     {
         foreach (var obj in list)
         {
@@ -25,33 +25,37 @@ public class BulletShooter:Enemy,IObjectPool
             {
                 if (bulletDelayTime != 0)
                     yield return new WaitForSeconds(bulletDelayTime);
-                o.SetActive(true);
+                o.SetEnable();
             }
         }
     }
-    public void Shoot(GameObject obj)
+    public void Shoot(Bullet obj)
     {
-        obj.SetActive(true);
+        obj.SetEnable();
     }
-    public void Shoot(List< List<GameObject>> list)
+
+
+
+
+    public void Shoot(List< List<Bullet>> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
             for(int j = 0; j < list[i].Count; j++)
             {
-                list[i][j].SetActive(true);
+                list[i][j].SetEnable();
             }
         }
     }
-    public void Shoot(List<List<GameObject>> list,float listDelayTime=0f,float bulletDelayTime=0f)
+    public void Shoot(List<List<Bullet>> list,float listDelayTime=0f,float bulletDelayTime=0f)
     {
         StartCoroutine(DelayShootList(list,listDelayTime,bulletDelayTime));
     }
-    public void Shoot(List<GameObject> list)
+    public void Shoot(List<Bullet> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
-            list[i].SetActive(true);
+            list[i].SetEnable();
         }
     }
     /// <summary>
@@ -59,7 +63,7 @@ public class BulletShooter:Enemy,IObjectPool
     /// </summary>
     /// <param name="list"></param>
     /// <param name="delayTime"></param>
-    public void Shoot(List<GameObject> list, float delayTime)
+    public void Shoot(List<Bullet> list, float delayTime)
     {
         StartCoroutine(DelayShoot(list, delayTime));
     }

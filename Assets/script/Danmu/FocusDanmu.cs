@@ -11,7 +11,7 @@ namespace Danmu
     public class FocusDanmu
     {
 
-        private static GameObject SingleFocusDanmu(GameObject template, Vector3 nowPosition, Vector3 target, float flySpeed)
+        private static Bullet SingleFocusDanmu(GameObject template, Vector3 nowPosition, Vector3 target, float flySpeed)
         {
             GameObject bullet = DanmuUtils.InitTemplate(template, nowPosition);
             DanmuUtils.ChangeFocus(bullet, target);
@@ -23,7 +23,7 @@ namespace Danmu
             bullet.GetComponent<Bullet>().flySpeed = flySpeed;
 
             bullet.transform.parent = null;
-            return bullet;
+            return script;
         }
 
         /// <summary>
@@ -34,14 +34,14 @@ namespace Danmu
         /// <param name="target">目标</param>
         /// <param name="flySpeed">速度</param>
         /// <returns></returns>
-        public static GameObject CreateFocusPointDanmu(GameObject template, Vector3 nowPosition, Vector3 target, float flySpeed)
+        public static Bullet CreateFocusPointDanmu(GameObject template, Vector3 nowPosition, Vector3 target, float flySpeed)
         {
 
-            GameObject obj = SingleFocusDanmu(template, nowPosition, target, flySpeed);
+            var obj = SingleFocusDanmu(template, nowPosition, target, flySpeed);
 
             return obj;
         }
-        public static GameObject CreateFocusGameObjectDanmu(GameObject template, Vector3 nowPosition, GameObject target, float flySpeed)
+        public static Bullet CreateFocusGameObjectDanmu(GameObject template, Vector3 nowPosition, GameObject target, float flySpeed)
         {
             return CreateFocusPointDanmu(template, nowPosition, target.transform.position, flySpeed);
         }
@@ -55,10 +55,10 @@ namespace Danmu
         /// <param name="num"></param>
         /// <param name="flySpeed"></param>
         /// <returns></returns>
-        public static List<GameObject> CreateMultiDanmu(GameObject template, Vector3 nowPosition, Vector3 target, int num, float flySpeed)
+        public static List<Bullet> CreateMultiDanmu(GameObject template, Vector3 nowPosition, Vector3 target, int num, float flySpeed)
         {
 
-            List<GameObject> danmuList = new List<GameObject>();
+            var danmuList = new List<Bullet>();
             if (num == 0)
                 return danmuList;
             for (int i = 0; i < num; i++)
@@ -67,7 +67,7 @@ namespace Danmu
             }
             return danmuList;
         }
-        public static List<GameObject> CreateMultiDanmu(GameObject template, Vector3 nowPosition, GameObject target, int num, float flySpeed)
+        public static List<Bullet> CreateMultiDanmu(GameObject template, Vector3 nowPosition, GameObject target, int num, float flySpeed)
         {
             return CreateMultiDanmu(template, nowPosition, target.transform.position, num, flySpeed);
         }

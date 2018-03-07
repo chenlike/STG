@@ -28,9 +28,9 @@ namespace Danmu
         /// <param name="flySpeed">速度</param>
         /// <param name="connectWithParent">是否与父断开</param>
         /// <returns></returns>
-        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float flySpeed, bool connectWithParent)
+        public static List<Bullet> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float flySpeed, bool connectWithParent)
         {
-            List<GameObject> danmuList = new List<GameObject>();
+            List<Bullet> danmuList = new List<Bullet>();
             if (num == 0) return danmuList;
 
             float angle = fromAngle;
@@ -51,15 +51,15 @@ namespace Danmu
 
                 if (!connectWithParent)
                     bullet.transform.parent = null;
-                danmuList.Add(bullet);
+                danmuList.Add(script);
 
             }
             return danmuList;
         }
 
-        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Vector3 pos, float fromAngle, float endAngle, int num, float flySpeed)
+        public static List<Bullet> CreateArcDanmu(GameObject bulletTemplate, Vector3 pos, float fromAngle, float endAngle, int num, float flySpeed)
         {
-            List<GameObject> danmuList = new List<GameObject>();
+            List<Bullet> danmuList = new List<Bullet>();
             if (num == 0) return danmuList;
 
             float angle = fromAngle;
@@ -77,18 +77,18 @@ namespace Danmu
 
                 DanmuUtils.ChangeFaceAngle(bullet,angle);
                 bullet.GetComponent<Bullet>().flySpeed = flySpeed;
-                danmuList.Add(bullet);
+                danmuList.Add(script);
             }
             
             return danmuList;
         }
-        public static List<GameObject> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float flySpeed)
+        public static List<Bullet> CreateArcDanmu(GameObject bulletTemplate, Transform parent, float fromAngle, float endAngle, int num, float flySpeed)
         {
             return CreateArcDanmu(bulletTemplate, parent, fromAngle, endAngle, num, flySpeed, false);
         }
 
 
-        public static List<GameObject> CreateArcDanmuEmpty(GameObject bulletTemplate, Vector3 pos, float startAngle, float endAngle, int num, float flySpeed)
+        public static List<Bullet> CreateArcDanmuEmpty(GameObject bulletTemplate, Vector3 pos, float startAngle, float endAngle, int num, float flySpeed)
         {
 
             if (num == 0) return null;
@@ -108,9 +108,9 @@ namespace Danmu
         /// <param name="flySpeed">移动速度</param>
         /// <param name="connectWithParent">与parent的链接</param>
         /// <returns></returns>
-        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Transform parent, int num, float flySpeed, bool connectWithParent)
+        public static List<Bullet> CreateCircleDanmu(GameObject bulletTemplate, Transform parent, int num, float flySpeed, bool connectWithParent)
         {
-            List<GameObject> danmuList = new List<GameObject>();
+            List<Bullet> danmuList = new List<Bullet>();
             if (num == 0) return danmuList;
 
             float angle = 0f;
@@ -129,18 +129,18 @@ namespace Danmu
                 bullet.transform.position = parent.position;
                 if (!connectWithParent)
                     bullet.transform.parent = null;
-                danmuList.Add(bullet);
+                danmuList.Add(script);
 
             }
             return danmuList;
         }
-        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Transform parent, int num, float flySpeed)
+        public static List<Bullet> CreateCircleDanmu(GameObject bulletTemplate, Transform parent, int num, float flySpeed)
         {
             return CreateCircleDanmu(bulletTemplate, parent, num, flySpeed, false);
         }
-        public static List<GameObject> CreateCircleDanmu(GameObject bulletTemplate, Vector3 position, int num, float flySpeed)
+        public static List<Bullet> CreateCircleDanmu(GameObject bulletTemplate, Vector3 position, int num, float flySpeed)
         {
-            List<GameObject> danmuList = new List<GameObject>();
+            List<Bullet> danmuList = new List<Bullet>();
             if (num == 0) return danmuList;
 
             float angle = 0f;
@@ -156,7 +156,7 @@ namespace Danmu
                 DanmuUtils.ChangeFaceAngle(bullet,angle);
                 script.flySpeed = flySpeed;
                 bullet.transform.parent = null;
-                danmuList.Add(bullet);
+                danmuList.Add(script);
 
             }
             return danmuList;

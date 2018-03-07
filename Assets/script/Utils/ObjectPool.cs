@@ -31,6 +31,7 @@ namespace PublicObj
             pool[name].TryDequeue(out tryOut);
             //如果tag 不是inpool说明已经被引用
 
+
             if (tryOut!=null && tryOut.tag != "inpool")
                 return GetGameObject(name);
 

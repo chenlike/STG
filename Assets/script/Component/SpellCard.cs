@@ -49,6 +49,7 @@ public abstract class SpellCard
     private void InitBulletShooter()
     {
         _privateObj.name = "privateObj";
+        _privateObj.tag = "EnemyBullet";
         bulletShooter = _privateObj.AddComponent<GameObjectBase>();
         bulletShooter.SetEnable();
     }
